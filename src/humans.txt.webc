@@ -1,0 +1,25 @@
+---
+eleventyExcludeFromCollections: true
+permalink: /humans.txt
+---
+/* TEAM */
+	<pre webc:nokeep @text="$data.pkg.author.name"></pre> <pre webc:nokeep @text="$data.pkg.author.email"></pre>
+
+/* THANKS */
+	Thanks to the Eleventy team for creating such a great static site generator.
+	Thanks to the WebC team for creating such a great templating language.
+	Thanks to the contributors of the projects I use on this site.
+	Thanks to the contributors of the projects I have used in the past.
+	Thanks to my family and friends for their support.
+
+/* SITE */
+
+Build Date: <pre webc:nokeep @text="new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'full',
+    timeStyle: 'short',
+    timeZone: 'UTC',
+  }).format(new Date()) + ' UTC'"></pre>
+
+Package Version: <pre webc:nokeep @text="$data.pkg.version"></pre>
+
+Commit Hash: <pre webc:nokeep @text="$data.site.hash ?? 'MISSING'"></pre>

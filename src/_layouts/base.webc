@@ -1,0 +1,25 @@
+<!doctype html>
+<!---
+  A base layout for Eleventy WebC projects.
+
+  Just a simple HTML5 document structure with a header, main content area, and footer.
+  Defers CSS and JS bundles are at the end of the document for better performance.
+
+--->
+<html webc:root :lang="$data.site.language ?? 'en'">
+  <head>
+    <title @text="$data.title ? `${$data.title} — ${$data.site.title}` : $data.site.title"></title>
+    <meta webc:is="head-meta" />
+    <link webc:is="head-link" />
+    <script webc:is="head-js"></script>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <slot><template webc:nokeep @raw="this.content"></template></slot>
+    </main>
+    <footer></footer>
+    <style webc:keep @raw="getBundle('css', 'defer')"></style>
+		<script webc:keep @raw="getBundle('js', 'defer')"></script>
+  </body>
+</html>

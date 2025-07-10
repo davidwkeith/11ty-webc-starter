@@ -1,0 +1,8 @@
+_site/
+.cache/
+.DS_Store
+.env
+.goose
+*.log
+*.tmp
+node_modules/

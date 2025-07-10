@@ -1,0 +1,13 @@
+<template webc:nokeep webc:component="head-js">
+    <!---
+      This relies on the 11ty data cascade to generate a schema.org JSON-LD script tag from the `$data.schema` object.
+      Makes the assumption that lower level pages are more specific than higher level pages. The call to `getSchema()`
+      will validate the JSON-LD and fail the build with an linting message if the Schema is not compliant.
+    --->
+    <script webc:if="$data.schema" webc:keep type="application/ld+json" @raw="getSchema({
+      ...$data.schema, 
+      url: (new URL($data.page.url, $data.site?.url)),
+    })"></script>
+    <script webc:keep :src="getBundleFileUrl('js')"></script>
+    <script src="./main.js"></script>
+</template>

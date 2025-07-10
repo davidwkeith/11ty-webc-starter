@@ -1,0 +1,12 @@
+<!---
+  All the <meta> tags for the header.
+--->
+<template webc:nokeep webc:component="head-meta">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" :content="$data.eleventy.generator">
+  <meta webc:if="$data.site.colorScheme" name="color-scheme" :content="$data.site.colorScheme">
+  <meta webc:if="$data.description || $data.schema?.description" name="description" :content="$data.description ?? $data.schema.description">
+  <meta webc:if="$data.site.fediverseCreator" name="fediverse:creator" :content="$data.site.fediverseCreator">
+  <meta webc:if="$data.site.copyright" name="copyright" :content="$data.site.copyright">
+  <meta webc:if="$data.site.rating" name="rating" content="$data.site.rating">
+</template>

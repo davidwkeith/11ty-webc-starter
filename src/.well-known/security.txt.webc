@@ -1,0 +1,9 @@
+---
+eleventyExcludeFromCollections: true
+permalink: /.well-known/security.txt
+_documentation: https://securitytxt.org
+---
+Contact: <template webc:nokeep @text="$data.site.securityContact"></template>
+Expires: <template webc:nokeep @text="new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()"></template>
+Preferred-Languages: <template webc:nokeep @text="$data.site.language"></template>
+Canonical: <template webc:nokeep @raw="new URL('/.well-known/security.txt', $data.site.url)"></template>

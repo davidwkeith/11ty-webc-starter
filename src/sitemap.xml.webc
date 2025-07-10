@@ -1,0 +1,12 @@
+---
+eleventyExcludeFromCollections: true
+permalink: /sitemap.xml
+---
+<template webc:nokeep webc:raw @raw='"<?xml version=\"1.0\" encoding=\"utf-8\" ?>"'></template>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url webc:for="page of collections.all" webc:if="!page.data.draft">
+    <loc @text="new URL(page.url, $data.site.url).href"></loc>
+    <lastmod @text="(new Date(page.date ?? undefined)).toISOString()"></lastmod>
+    <changefreq @text="page.data.changeFreq ?? 'yearly'"></changefreq>
+  </url>
+</urlset>

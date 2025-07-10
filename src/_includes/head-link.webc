@@ -1,0 +1,15 @@
+<!---
+  All the <link> tags for the header.
+--->
+<template webc:nokeep webc:component="head-link">
+  <link webc:if="$data.page.url" rel="canonical" :href="new URL($data.page.url, $data.site.url)">
+  <link webc:if="$data.site.headLinks" webc:for="rel, href in $data.site.headLinks" :href="href" :rel="rel">
+  <link webc:if="$data.site.favicon.src" webc:nokeep @raw="favicons($data.site.favicon.src, { 
+    manifestData: $data.site?.manifest,
+    appleIconBgColor: $data.site.favicon?.appleIconBgColor,
+    appleIconPadding: $data.site.favicon?.appleIconPadding })">
+  <link rel="alternate" type="application/json" :href="new URL('/feed.json', $data.site.url)" />
+  <link webc:keep rel="stylesheet" :href="getBundleFileUrl('css')">
+  <link rel="stylesheet" href="./main.css">
+  <link type="text/plain" rel="author" :href="new URL('/humans.txt', $data.site.url)" />
+</template>
