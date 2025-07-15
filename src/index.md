@@ -16,3 +16,5 @@ This starter project focuses on using webc with 11ty, no CSS or client-side JS.
     <a :href="post.url" @text="post.data.title"></a>
   </li>
 </ul>
+
+Source [@dwk/11ty-webc-starter](https://github.com/davidwkeith/11ty-webc-starter)

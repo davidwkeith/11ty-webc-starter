@@ -1,5 +1,5 @@
 {
-  "name": "11ty-webc-starter",
+  "name": "@dwk/11ty-webc-starter",
   "version": "0.1.0",
   "description": "A style-free starter for templating an entire 11ty site using WebC",
   "type": "module",
