@@ -61,35 +61,22 @@ export default {
    */
   copyright: `CC-BY-4.0 David W. Keith ${(new Date()).getFullYear()}`,
 
-/**
- * This is used to generate the favicons for the site.
- * 
- * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
- * @property {object} favicon - Favicon options.
- * @property {string} favicon.src - Path to the source image.
- * @property {string} favicon.appleIconBgColor - Background color for the Apple touch icon.
- * @property {number} favicon.appleIconPadding - Padding for the Apple touch icon.
- */
+  /**
+   * This is used to generate the favicons for the site.
+   * 
+   * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
+   * @property {object} favicon - Favicon options.
+   * @property {string} favicon.src - Path to the source image.
+   * @property {string} favicon.appleIconBgColor - Background color for the Apple touch icon.
+   * @property {number} favicon.appleIconPadding - Padding for the Apple touch icon.
+   */
   favicon: {
     src: "img/favicon.svg",
     appleIconBgColor: "#FFFFFF",
     appleIconPadding: 20,
   },
 
-  /**
-   * This gets mixed into the web-manifest for the site.
-   * 
-   * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
-   * @property {object} manifest - Web manifest options.
-   * @property {string} manifest.appName - The name of the application.
-   * @property {string} manifest.appDescription - A description of the application.
-   * @property {string} manifest.lang - The language of the application.
-   */
-  manifest: { 
-    appName: "11ty WebC Starter",
-    appDescription: "A simple 11ty starter site using Webc templating.", 
-    lang: "en",
-  },
+  
 
   /**
    * The content rating of the site, used in the `<meta name="rating">` tag.
@@ -100,7 +87,7 @@ export default {
    * @property {string} rating - either "general" or "adult"
    */
   rating: "general",
-  
+
   /**
    * The language for the content of the site, used in the `<html lang="">` attribute
    * and any other place where language information is needed. (assumes the entire site
@@ -112,13 +99,7 @@ export default {
    */
   language: "en",
 
-  /**
-   * The default Open Graph image for social sharing.
-   * This will be used if no specific Open Graph image is defined for a page.
-   * 
-   * @property {string} defaultOgImage - Path to the default Open Graph image.
-   */
-  defaultOgImage: "img/favicon.svg",
+  
 
   /**
    * Controls whether the main navigation is rendered on the site.
@@ -128,7 +109,7 @@ export default {
    * @default true
    */
   hasNavigation: true,
-  
+
   /**
    * Support for switching between dark and light mode in CSS.
    * 
@@ -157,13 +138,45 @@ export default {
   ],
 
   /**
-   * The git hash of the current HEAD, used in the build report for `humans.txt`.
+   * The default Open Graph image for social sharing.
+   * This will be used if no specific Open Graph image is defined for a page.
    * 
    * @computed
-   * @property {string} hash - The git hash of the current HEAD.
+   * @property {string} defaultOgImage - Path to the default Open Graph image.
+   */
+  defaultOgImage() {
+    return this.favicon.src;
+  },
+
+  /**
+   * This gets mixed into the web-manifest for the site.
+   * 
+   * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
+   * @computed
+   * @property {object} manifest - Web manifest options.
+   * @property {string} manifest.appName - The name of the application.
+   * @property {string} manifest.appDescription - A description of the application.
+   * @property {string} manifest.lang - The language of the application.
+   */
+  manifest() {
+    return {
+      appName: this.title,
+      appDescription: this.description,
+      lang: this.language,
+    };
+  },
+
+  /**
+   * used in the build report for `humans.txt`
+   * 
+   * @computed
+   * @property {string} The git hash of the current HEAD
    */
   hash: childProcess
-      .execSync('git rev-parse --short HEAD')
-      .toString()
-      .trim(),
+    .execSync('git rev-parse --short HEAD')
+    .toString()
+    .trim(),
+
 }
+
+  
