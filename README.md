@@ -21,6 +21,7 @@ This starter aims to provide a clean, unopinionated foundation for building stat
 *   **Favicon Generation:** Configurable favicon generation from a single SVG source.
 *   **Schema.org Integration:** Easy setup for structured data using JSON-LD.
 *   **Cloudflare Pages Ready:** Includes `_headers` and `_redirects` for Cloudflare Pages deployment.
+*   **Subresource Integrity (SRI):** Automated post-build process to add SHA-384 hashes to local CSS and JavaScript assets, enhancing security by ensuring assets haven't been tampered with.
 
 ## Getting Started
 
@@ -83,12 +84,14 @@ To start a fresh project using this starter, follow these steps:
 
 ## Available Commands
 
-This starter uses a single `npm` script for building the site:
+This starter uses `npm` scripts to automate common tasks:
 
-*   **`npm test`**: Builds the Eleventy site. This command compiles all your WebC components, Markdown files, and data into the `_site` directory.
+*   **`npm install`**: Installs project dependencies.
+*   **`npm run build`**: Builds the Eleventy site and then runs the `postbuild` script.
+*   **`npm run postbuild`**: (Automatically run after `npm run build`) Adds Subresource Integrity (SRI) hashes to generated CSS and JavaScript files.
 
     ```bash
-    npm test
+    npm run build
     ```
 
 ## Project Structure
@@ -136,7 +139,7 @@ This starter is designed for easy deployment to [Cloudflare Pages](https://pages
 
 1.  **Connect your Git repository:** Link your project's Git repository (e.g., GitHub, GitLab, Bitbucket) to Cloudflare Pages.
 2.  **Automatic Detection:** Cloudflare Pages will automatically detect that your project is an Eleventy site.
-3.  **Build & Deploy:** It will use the `npm install` command to install dependencies and `npm test` (which runs `npx @11ty/eleventy`) to build your site. The output will be served from the `_site` directory.
+3.  **Build & Deploy:** It will use the `npm install` command to install dependencies and `npm run build` to build your site. The `npm run build` command automatically includes Subresource Integrity (SRI) hashing for your assets. The output will be served from the `_site` directory.
 
 No special configuration is typically required for Eleventy projects on Cloudflare Pages. For other hosting providers, consult their documentation for Eleventy deployment.
 
