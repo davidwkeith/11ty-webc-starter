@@ -1,7 +1,6 @@
 /**
- * This the the global JavaScript file.
- * 
- * With WebC you can add <script> tags to any template and have them scoped
- * This is for more global code.
- * 
+ * @summary The global JavaScript file for the site.
+ *
+ * With WebC, you can add scoped <script> tags directly to your components.
+ * This file is for JavaScript that needs to be available on all pages.
  */

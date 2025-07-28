@@ -25,12 +25,12 @@ export default {
   description: "A simple 11ty starter site using Webc templating.",
 
   /**
-   * The URL is used in the `<link rel="canonical">` tag, JSON feed, and many other
-   * locations throughout the build. If you need to vary based on enviornment it would
-   * be best to store the value in an ENV variable so it can change by build.
+   * The URL is used in the `<link rel="canonical">` tag, JSON feed, and sitemap.
+   * It should be the full URL to the site, including the protocol.
    * 
    * @required
-   * @property {URL} the URL of the site.
+   * @type {URL}
+   * @property {URL} url - The URL of the site.
    */
   url: new URL("https://11ty-webc-starter.dwk.io"),
 
@@ -43,7 +43,7 @@ export default {
    */
   // fediverseCreator: "@11ty-webc-starter@example.com",
 
-  /***
+  /**
    * See [RFC9116 Section 2.5.3](https://www.rfc-editor.org/rfc/rfc9116#section-2.5.3) for options
    * 
    * @see https://www.rfc-editor.org/rfc/rfc9116#section-2.5.3
@@ -61,11 +61,14 @@ export default {
    */
   copyright: `CC-BY-4.0 David W. Keith ${(new Date()).getFullYear()}`,
 
-/***
- * This is used to generate the favicons for the site. Ideally using a
- * SVG so all the appropriate sizes can be generated at the higest quality.
+/**
+ * This is used to generate the favicons for the site.
  * 
  * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
+ * @property {object} favicon - Favicon options.
+ * @property {string} favicon.src - Path to the source image.
+ * @property {string} favicon.appleIconBgColor - Background color for the Apple touch icon.
+ * @property {number} favicon.appleIconPadding - Padding for the Apple touch icon.
  */
   favicon: {
     src: "img/favicon.svg",
@@ -77,6 +80,10 @@ export default {
    * This gets mixed into the web-manifest for the site.
    * 
    * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
+   * @property {object} manifest - Web manifest options.
+   * @property {string} manifest.appName - The name of the application.
+   * @property {string} manifest.appDescription - A description of the application.
+   * @property {string} manifest.lang - The language of the application.
    */
   manifest: { 
     appName: "11ty WebC Starter",
@@ -94,7 +101,7 @@ export default {
    */
   rating: "general",
   
-  /***
+  /**
    * The language for the content of the site, used in the `<html lang="">` attribute
    * and any other place where language information is needed. (assumes the entire site
    * is in the same language)
@@ -133,10 +140,10 @@ export default {
   ],
 
   /**
-   * used in the build report for `humans.txt`
+   * The git hash of the current HEAD, used in the build report for `humans.txt`.
    * 
    * @computed
-   * @property {string} The git hash of the current HEAD
+   * @property {string} hash - The git hash of the current HEAD.
    */
   hash: childProcess
       .execSync('git rev-parse --short HEAD')
