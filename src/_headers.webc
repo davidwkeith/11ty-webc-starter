@@ -1,7 +1,0 @@
----
-eleventyExcludeFromCollections: true
-permalink: /_headers
-_documentation: https://developers.cloudflare.com/pages/configuration/headers/
----
-/*
-  X-Frame-Options: DENY
