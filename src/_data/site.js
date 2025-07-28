@@ -144,7 +144,7 @@ export default {
    * @computed
    * @property {string} defaultOgImage - Path to the default Open Graph image.
    */
-  defaultOgImage() {
+  get defaultOgImage() {
     return this.favicon.src;
   },
 
@@ -158,7 +158,7 @@ export default {
    * @property {string} manifest.appDescription - A description of the application.
    * @property {string} manifest.lang - The language of the application.
    */
-  manifest() {
+  get manifest() {
     return {
       appName: this.title,
       appDescription: this.description,
@@ -172,10 +172,12 @@ export default {
    * @computed
    * @property {string} The git hash of the current HEAD
    */
-  hash: childProcess
-    .execSync('git rev-parse --short HEAD')
-    .toString()
-    .trim(),
+  get hash() {
+    return childProcess
+      .execSync('git rev-parse --short HEAD')
+      .toString()
+      .trim()
+  },
 
 }
 
