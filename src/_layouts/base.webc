@@ -14,8 +14,13 @@
     <script webc:is="head-js"></script>
   </head>
   <body>
-    <header></header>
-    <main>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+      <nav webc:if="$data.site.hasNavigation">
+        <a webc:for="item in $data.navigation" :href="item.url" @text="item.text"></a>
+      </nav>
+    </header>
+    <main id="main-content">
       <slot><template webc:nokeep @raw="this.content"></template></slot>
     </main>
     <footer></footer>

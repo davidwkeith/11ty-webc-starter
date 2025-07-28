@@ -111,6 +111,15 @@ export default {
    * @default "en"
    */
   language: "en",
+
+  /**
+   * Controls whether the main navigation is rendered on the site.
+   * Set to `false` for single-page sites or if navigation is handled differently.
+   * 
+   * @property {boolean} hasNavigation - Whether to render the main navigation.
+   * @default true
+   */
+  hasNavigation: true,
   
   /**
    * Support for switching between dark and light mode in CSS.
