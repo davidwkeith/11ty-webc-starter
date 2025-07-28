@@ -5,16 +5,30 @@ import * as cheerio from 'cheerio';
 
 const buildDir = './_site';
 
+/**
+ * Generates a SHA-384 hash for the given file content.
+ * @param {string} filePath - The absolute path to the file.
+ * @returns {Promise<string>} The SHA-384 hash prefixed with 'sha384-'.
+ */
 async function generateSriHash(filePath) {
   const fileContent = await fs.readFile(filePath);
   const hash = crypto.createHash('sha384').update(fileContent).digest('base64');
   return `sha384-${hash}`;
 }
 
+/**
+ * Processes a single HTML file to add SRI attributes to its assets.
+ * @param {string} filePath - The absolute path to the HTML file.
+ */
 async function processHtmlFile(filePath) {
   const htmlContent = await fs.readFile(filePath, 'utf8');
   const $ = cheerio.load(htmlContent);
 
+  /**
+   * Processes a single asset element (link or script) to add SRI attributes.
+   * @param {number} index - The index of the element in the selection.
+   * @param {cheerio.Element} element - The Cheerio element object.
+   */
   const processAsset = async (index, element) => {
     const srcAttr = $(element).attr('src') || $(element).attr('href');
     if (srcAttr && !srcAttr.startsWith('http') && !srcAttr.startsWith('//')) {
