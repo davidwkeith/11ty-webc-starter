@@ -108,26 +108,29 @@ export default {
   /**
    * Support for switching between dark and light mode in CSS.
    * 
-   * TODO: support `media` attribute.
-   * 
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/color-scheme
-   * @property {string} colorScheme - a string that defines the site's prefered color scheme
+   * @property {object} colorScheme - an object that defines the site's prefered color scheme
+   * @property {string} colorScheme.content - the value of the content attribute
+   * @property {string} [colorScheme.media] - the value of the media attribute
    */
-  colorScheme: "dark light",
+  colorScheme: {
+    content: "dark light",
+    // media: "(prefers-color-scheme: dark)",
+  },
 
   /**
    * A quick and easy way to add addtional `<link>` tags to the site's `<head>`.
    * 
-   * TODO: support all attributes
-   * 
    * @optional
-   * @property {object} headLinks - a key-value object where the key is the relationship type and the value is the URI.
+   * @property {object[]} headLinks - an array of objects, each representing a `<link>` tag.
+   * @property {string} headLinks[].rel - the relationship of the link
+   * @property {string} headLinks[].href - the URL of the link
    */
-  headLinks: {
-    "code-repository": "https://github.com/davidwkeith/11ty-webc-starter.git",
-    "issues": "https://github.com/davidwkeith/11ty-webc-starter/-/issues",
-    "code-license": "https://opensource.org/license/isc-license-txt",
-  },
+  headLinks: [
+    { rel: "code-repository", href: "https://github.com/davidwkeith/11ty-webc-starter.git" },
+    { rel: "issues", href: "https://github.com/davidwkeith/11ty-webc-starter/-/issues" },
+    { rel: "code-license", href: "https://opensource.org/license/isc-license-txt" },
+  ],
 
   /**
    * used in the build report for `humans.txt`
