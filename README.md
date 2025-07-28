@@ -43,6 +43,44 @@ To get a local copy up and running, follow these simple steps.
     npm install
     ```
 
+## Creating a New Project from this Starter
+
+To start a fresh project using this starter, follow these steps:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/davidwkeith/11ty-webc-starter.git your-new-project-name
+    ```
+    Replace `your-new-project-name` with the desired name for your new website's directory.
+
+2.  **Navigate into your new project:**
+    ```bash
+    cd your-new-project-name
+    ```
+
+3.  **Remove the old Git history:**
+    ```bash
+    rm -rf .git
+    ```
+    This command removes the `.git` directory, effectively detaching your new project from the starter's repository.
+
+4.  **Initialize a new Git repository (optional, but recommended):**
+    ```bash
+    git init
+    git add .
+    git commit -m "Initial commit"
+    ```
+    Now you have a clean Git repository for your new project.
+
+5.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+6.  **Customize your site:**
+    *   Edit `src/_data/site.js` to update your site's title, description, URL, and other global settings.
+    *   Start adding your content in `src/index.md`, `src/posts/`, or create new pages.
+
 ## Available Commands
 
 This starter uses a single `npm` script for building the site:
