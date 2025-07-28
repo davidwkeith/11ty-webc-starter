@@ -4,6 +4,7 @@ import { eleventyImagePlugin } from "@11ty/eleventy-img";
 import Image from "@11ty/eleventy-img";
 import faviconsPlugin from "eleventy-plugin-gen-favicons";
 import htmlmin from "html-minifier-terser";
+import markdownIt from "markdown-it";
 import { lint } from "jsonld-lint";
 
 /**
@@ -75,6 +76,46 @@ export default function (eleventyConfig) {
   });
 
   /**
+   * Generates a responsive <picture> element with optimized images.
+   * @param {string} src - The path to the source image (relative to the input directory).
+   * @param {string} alt - The alt text for the image.
+   * @param {string} [classes] - Optional CSS classes to apply to the <img> tag.
+   * @returns {Promise<string>} The HTML string for the <picture> element.
+   */
+  eleventyConfig.addShortcode("image", async (src, alt, classes) => {
+    if (!src) {
+      throw new Error("Image shortcode requires a 'src' attribute.");
+    }
+    if (!alt) {
+      console.warn(`Image "${src}" is missing alt text.`);
+    }
+
+    let metadata = await Image(src, {
+      widths: [400, 800, 1200, 1600],
+      formats: ["webp", "jpeg"],
+      outputDir: "./_site/img/",
+      urlPath: "/img/",
+      defaultAttributes: {
+        loading: "lazy",
+        decoding: "async",
+      }
+    });
+
+    let imageAttributes = {
+      alt,
+      sizes: "(min-width: 1024px) 100vw, 50vw", // Example sizes, can be customized
+      loading: "lazy",
+      decoding: "async",
+    };
+
+    if (classes) {
+      imageAttributes.class = classes;
+    }
+
+    return Image.generateHTML(metadata, imageAttributes);
+  });
+
+  /**
    * Get schema.org JSON-LD data, validates against the schema.org
    * context and returns it as a JSON string.
    * @param {object} schema - The schema object to validate and stringify.
@@ -117,6 +158,28 @@ export default function (eleventyConfig) {
 
 
   // Set input and output directories
+  eleventyConfig.setLibrary("md", markdownIt({
+    html: true,
+    breaks: true,
+    linkify: true
+  }).use(function(md) {
+    // Override the default image renderer to use our `image` shortcode
+    md.renderer.rules.image = (tokens, idx, options, env, self) => {
+      const token = tokens[idx];
+      const src = token.attrGet('src');
+      const alt = token.attrGet('alt');
+      const classes = token.attrGet('class');
+
+      // Get the image shortcode function
+      const imageShortcode = eleventyConfig.getFilter("image");
+
+      // Call the image shortcode and return its output
+      // Note: This is an async function, but markdown-it expects sync output.
+      // Eleventy handles async shortcodes in markdown, so this should be fine.
+      return imageShortcode(src, alt, classes);
+    };
+  }));
+
   return {
     templateFormats: [ "11ty.js", "webc", "md", "html" ],
     dir: {
