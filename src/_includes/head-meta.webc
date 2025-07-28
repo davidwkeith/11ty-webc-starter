@@ -6,6 +6,13 @@
   <meta name="generator" :content="$data.eleventy.generator">
   <meta webc:if="$data.site.colorScheme" name="color-scheme" :content="$data.site.colorScheme.content" :media="$data.site.colorScheme.media">
   <meta webc:if="$data.description || $data.schema?.description" name="description" :content="$data.description ?? $data.schema.description">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" :content="new URL($data.page.url, $data.site.url)">
+  <meta property="og:title" :content="$data.title ?? $data.site.title">
+  <meta property="og:description" :content="$data.description ?? $data.schema?.description ?? $data.site.description">
+  <meta property="og:image" :content="ogImage($data.page.ogImage ?? $data.site.defaultOgImage)">
   <meta webc:if="$data.site.fediverseCreator" name="fediverse:creator" :content="$data.site.fediverseCreator">
   <meta webc:if="$data.site.copyright" name="copyright" :content="$data.site.copyright">
   <meta webc:if="$data.site.rating" name="rating" content="$data.site.rating">

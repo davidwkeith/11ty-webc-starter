@@ -113,6 +113,14 @@ export default {
   language: "en",
 
   /**
+   * The default Open Graph image for social sharing.
+   * This will be used if no specific Open Graph image is defined for a page.
+   * 
+   * @property {string} defaultOgImage - Path to the default Open Graph image.
+   */
+  defaultOgImage: "img/favicon.svg",
+
+  /**
    * Controls whether the main navigation is rendered on the site.
    * Set to `false` for single-page sites or if navigation is handled differently.
    * 
