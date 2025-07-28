@@ -179,8 +179,10 @@ export default function (eleventyConfig) {
     return content;
   });
 
+  
 
-  // Set input and output directories
+
+  
   eleventyConfig.setLibrary("md", markdownIt({
     html: true,
     breaks: true,
