@@ -1,6 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="12" fill="black" />
-  <text x="50%" y="50%" font-size="28" font-family="sans-serif" fill="white" text-anchor="middle" alignment-baseline="central">
+  <text x="50%" y="50%" font-size="28" font-family="sans-serif" fill="white" text-anchor="middle"
+    alignment-baseline="central">
     11ty
+  </text>
+  <text x="32" y="32"
+    font-family="monospace"
+    font-size="15"
+    fill="red"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    transform="rotate(-45 32 32)">
+    STARTER
   </text>
 </svg>
