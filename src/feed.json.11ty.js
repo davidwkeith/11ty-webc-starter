@@ -59,8 +59,7 @@ export default class JSONFeed {
           avatar: data.schema.author?.image
         },
         tags: item.data.tags ?? [],
-        // TODO: add support for attachements (aka podcasts)
-        // attachments: item.data.attachments ?? [],
+        attachments: item.data.attachments ?? [],
 
       });
     }
