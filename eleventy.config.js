@@ -1,12 +1,21 @@
 import dotenv from "dotenv"
 import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
 import { eleventyImagePlugin } from "@11ty/eleventy-img";
+import Image from "@11ty/eleventy-img";
 import faviconsPlugin from "eleventy-plugin-gen-favicons";
 import htmlmin from "html-minifier-terser";
 import { lint } from "jsonld-lint";
 
+/**
+ * Load environment variables from .env file.
+ */
 dotenv.config()
 
+/**
+ * Eleventy configuration function.
+ * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
+ * @returns {object}
+ */
 export default function (eleventyConfig) {
 
   // FIXME: Workaround for https://github.com/11ty/eleventy-plugin-webc/issues/86
@@ -44,21 +53,52 @@ export default function (eleventyConfig) {
   });
 
   /**
-   * Get schema.org JSON-LD data validates against the schema.org
+   * Generates an optimized Open Graph image URL using Eleventy Image.
+   * @param {string} src - The path to the source image (relative to the input directory).
+   * @returns {Promise<string>} The URL of the optimized JPEG image.
+   */
+  eleventyConfig.addShortcode("ogImage", async (src) => {
+    if (!src) {
+      return ""; // Or handle error/default more robustly
+    }
+    let metadata = await Image(src, {
+      widths: [1200],
+      formats: ["jpeg"],
+      outputDir: "./_site/img/og/",
+      urlPath: "/img/og/",
+      filenameFormat: function (id, src, width, format, options) {
+        const originalExtension = src.split('.').pop();
+        return `${id}-${width}.${format}`;
+      }
+    });
+    return metadata.jpeg[0].url;
+  });
+
+  /**
+   * Get schema.org JSON-LD data, validates against the schema.org
    * context and returns it as a JSON string.
+   * @param {object} schema - The schema object to validate and stringify.
+   * @returns {Promise<string>} The JSON-LD string.
+   * @throws {string} Throws an error if the schema is invalid.
    */
   eleventyConfig.addJavaScriptFunction("getSchema", async (schema) => {
     const JSONSchema = JSON.stringify(schema)
     const lintErrors = await lint(JSONSchema);
     if (lintErrors.length > 0) {
-      console.error(lintErrors);
-      throw "Invlaid Schema.org JSON-LD"
+      console.error("Schema.org JSON-LD validation errors:");
+      lintErrors.forEach(error => {
+        console.error(`  - ${error.path}: ${error.message} (Line: ${error.line}, Column: ${error.column})`);
+      });
+      throw new Error("Invalid Schema.org JSON-LD detected. See console for details.");
     }
     return JSONSchema;
   });
 
   /**
-   * Minify the HTML output
+   * Minify the HTML output using html-minifier-terser.
+   * This transform is applied to all HTML files.
+   * @param {string} content - The HTML content to minify.
+   * @returns {string} The minified HTML content.
    */
   eleventyConfig.addTransform("htmlmin", function (content) {
     if ((this.page.outputPath || "").endsWith(".html")) {
