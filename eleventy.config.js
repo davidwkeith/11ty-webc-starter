@@ -19,14 +19,19 @@ dotenv.config()
  */
 export default function (eleventyConfig) {
 
-  // FIXME: Workaround for https://github.com/11ty/eleventy-plugin-webc/issues/86
-  // In the front matter of a file with a permalink like `/404.html`, simply
-  // duplicate the permalink value in `page.url` to avoid build errors.
+  // FIXME: Workaround for a known issue in eleventy-plugin-webc (https://github.com/11ty/eleventy-plugin-webc/issues/86).
+  // When using `permalink` in front matter, especially with dynamic values or for non-HTML files,
+  // `page.url` may not be correctly populated or available to other plugins/filters.
+  // To avoid build errors and ensure consistent URL generation, explicitly duplicate the `permalink`
+  // value in `page.url` within the front matter for affected templates.
+  //
+  // Example:
   // ```
-  // permalink: /404.html
+  // permalink: /my-page/index.html
   // page:
-  //    url: /404.html
+  //    url: /my-page/
   // ```
+  // This ensures that `page.url` is always available and correctly reflects the intended output URL.
   eleventyConfig.setFreezeReservedData(false);
 
   eleventyConfig.addBundle("css");
@@ -73,6 +78,24 @@ export default function (eleventyConfig) {
       }
     });
     return metadata.jpeg[0].url;
+  });
+
+  /**
+   * Converts a date object to an HTML-friendly date string (YYYY-MM-DD).
+   * @param {Date} dateObj - The date object to format.
+   * @returns {string} The formatted date string.
+   */
+  eleventyConfig.addFilter("htmlDateString", (dateObj) => {
+    return dateObj.toISOString().slice(0, 10);
+  });
+
+  /**
+   * Converts a date object to a human-readable date string.
+   * @param {Date} dateObj - The date object to format.
+   * @returns {string} The formatted date string.
+   */
+  eleventyConfig.addFilter("readableDate", (dateObj) => {
+    return dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   });
 
   /**
