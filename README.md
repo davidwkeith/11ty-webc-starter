@@ -1,19 +1,111 @@
 # 11ty WebC Starter
 
-An example of a simple blog using WebC templating throughout (including in XML and TXT files, but not JSON as that is crazy talk). This starter project assumes deployment to [Cloudflare Pages](https://pages.cloudflare.com) so it includes static configuration files for that platform, but similar files exist for most common static site hosts.
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
-## Overview
+A style-free starter for templating an entire 11ty site using WebC, designed for simplicity and flexibility. This project demonstrates how to leverage WebC components for all your templating needs, including HTML, XML, and plain text files. While pre-configured for [Cloudflare Pages](https://pages.cloudflare.com), its static nature makes it easily adaptable to any static site hosting provider.
 
-Run `npm @11ty/eleventy` to build the site, or view the latest version here: https://11ty-webc-starter.dwk.io
+## Purpose
+
+This starter aims to provide a clean, unopinionated foundation for building static sites with Eleventy and WebC. It focuses on:
+
+*   **WebC-first Templating:** All content and layouts are built using WebC components, showcasing a modern approach to templating in Eleventy.
+*   **Minimal Styling:** It comes with minimal, unopinionated styling, allowing you to bring your own design system or framework without conflicts.
+*   **Essential Features:** Includes common features like JSON Feed generation, favicon support, and Schema.org integration.
+*   **Clear Structure:** A well-organized project structure that's easy to understand and extend.
+
+## Features
+
+*   **Eleventy:** A simpler static site generator.
+*   **WebC:** Component-based templating for HTML, XML, and text files.
+*   **JSON Feed:** Automatically generated `feed.json` for your blog posts.
+*   **Favicon Generation:** Configurable favicon generation from a single SVG source.
+*   **Schema.org Integration:** Easy setup for structured data using JSON-LD.
+*   **Cloudflare Pages Ready:** Includes `_headers` and `_redirects` for Cloudflare Pages deployment.
+
+## Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+*   Node.js (LTS recommended)
+*   npm (comes with Node.js)
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/davidwkeith/11ty-webc-starter.git
+    cd 11ty-webc-starter
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+## Available Commands
+
+This starter uses a single `npm` script for building the site:
+
+*   **`npm test`**: Builds the Eleventy site. This command compiles all your WebC components, Markdown files, and data into the `_site` directory.
+
+    ```bash
+    npm test
+    ```
+
+## Project Structure
+
+```
+.
+├── .eleventy.config.js   # Eleventy configuration file
+├── package.json          # Project dependencies and scripts
+├── README.md             # This file
+└── src/                  # All source files for your site
+    ├── _data/            # Global data files (site.js, schema.js)
+    ├── _includes/        # Reusable WebC components, CSS, JS
+    ├── _layouts/         # WebC layout components
+    ├── .well-known/      # Standard web files (e.g., security.txt)
+    ├── posts/            # Markdown files for blog posts
+    ├── 404.md            # Custom 404 page
+    ├── feed.json.11ty.js # JSON Feed generation
+    ├── index.md          # Homepage content
+    └── ...               # Other pages and assets
+```
 
 ## Customization
 
-The CSS and JS can be updated however is needed, but some data files are required to build with the way the WebC templates are setup. These are fully documented.
+### Site Configuration (`src/_data/site.js`)
 
-### Site
+This file contains global site-wide variables such as the site title, description, URL, and more. It's the primary place to configure your site's metadata and global settings. The JSDoc comments within the file provide detailed explanations for each property.
 
-The [site data file](./src/_data/site.js) is for sitewide data like the site's URL, title, and more.
+### Schema Data (`src/_data/schema.js`)
 
-### Schema
+This file defines the base Schema.org JSON-LD data for your site. You can extend or override this data on a per-page basis using Eleventy's data cascade. This is crucial for improving your site's SEO and how it appears in search results.
 
-The [schema data file](./src/_data/schema.js) is directly seralized into JSON-LD once it is validated. This makes it easy to add the appropraiate schema.org metadata to each page. It ultimately must conform to the Schema.org context.
+### Content
+
+*   **Pages:** Add new Markdown (`.md`) or WebC (`.webc`) files directly in the `src/` directory or its subdirectories to create new pages.
+*   **Blog Posts:** Create new Markdown files within the `src/posts/` directory. Each Markdown file will be processed as a blog post.
+
+### Styling and Scripting
+
+*   **CSS:** Add your global CSS to `src/_includes/main.css`. You can also include component-specific styles within your WebC components.
+*   **JavaScript:** Add your global JavaScript to `src/_includes/main.js`. WebC also allows for scoped JavaScript directly within your components.
+
+## Deployment
+
+This starter is designed for easy deployment to [Cloudflare Pages](https://pages.cloudflare.com). Cloudflare Pages has native support for Eleventy projects, simplifying the deployment process.
+
+1.  **Connect your Git repository:** Link your project's Git repository (e.g., GitHub, GitLab, Bitbucket) to Cloudflare Pages.
+2.  **Automatic Detection:** Cloudflare Pages will automatically detect that your project is an Eleventy site.
+3.  **Build & Deploy:** It will use the `npm install` command to install dependencies and `npm test` (which runs `npx @11ty/eleventy`) to build your site. The output will be served from the `_site` directory.
+
+No special configuration is typically required for Eleventy projects on Cloudflare Pages. For other hosting providers, consult their documentation for Eleventy deployment.
+
+## Contributing
+
+Contributions are welcome! If you find a bug or have a suggestion for improvement, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
