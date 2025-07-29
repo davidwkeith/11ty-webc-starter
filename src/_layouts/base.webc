@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title @text="$data.title ? `${$data.title} — ${$data.site.title}` : $data.site.title"></title>
+    <link rel="icon" href="/icon-192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/icon-192.png" sizes="192x192">
+    <link rel="icon" href="/icon-512.png" sizes="512x512">
     <meta webc:is="head-meta" />
     <link webc:is="head-link" />
     <script webc:is="head-js"></script>

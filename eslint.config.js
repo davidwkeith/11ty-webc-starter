@@ -4,9 +4,6 @@ import prettierRecommended from 'eslint-plugin-prettier/recommended';
 
 export default [
   {
-    ignores: ['src/_headers.11ty.js', 'src/_redirects.11ty.js'],
-  },
-  {
     languageOptions: {
       ecmaVersion: 12,
       sourceType: 'module',
