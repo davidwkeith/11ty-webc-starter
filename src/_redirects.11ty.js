@@ -4,7 +4,6 @@
  * @see https://developers.cloudflare.com/pages/configuration/redirects/
  */
 export default class Redirects {
-
   /**
    * Defines the redirects to be output to the `_redirects` file.
    * Each object in the array represents a redirect rule.
@@ -33,7 +32,7 @@ export default class Redirects {
    */
   data() {
     return {
-      permalink: "/_redirects",
+      permalink: '/_redirects',
       eleventyExcludeFromCollections: true,
     };
   }
@@ -46,10 +45,12 @@ export default class Redirects {
   async render(data) {
     let output = [];
 
-    this.redirects.forEach(redirectConfig => {
-      output.push(`${redirectConfig.source} ${redirectConfig.destination} ${redirectConfig.code}`);
+    this.redirects.forEach((redirectConfig) => {
+      output.push(
+        `${redirectConfig.source} ${redirectConfig.destination} ${redirectConfig.code}`
+      );
     });
 
-    return output.join("\n");
+    return output.join('\n');
   }
 }

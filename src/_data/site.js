@@ -4,39 +4,38 @@ import childProcess from 'node:child_process';
  * These are all the site-level variables. Often used as fallback for page-level data.
  */
 export default {
-
   /**
    * The title of the site, used in the `<title>` tag and as the main heading.
    * Also used in the JSON (RSS) Feed. See the `base.webc` template for individual
    * page title computation.
-   * 
+   *
    * @required
    * @property {string} title - Site title
    */
-  title: "11ty WebC Starter",
+  title: '11ty WebC Starter',
 
   /**
    * Description is used in the `<meta name="description">` tag.
    * if the description is not set in front matter for the individual page.
    * This is also used in the JSON Feed.
-   * 
+   *
    * @property {string} description - A short description of the site.
    */
-  description: "A simple 11ty starter site using Webc templating.",
+  description: 'A simple 11ty starter site using Webc templating.',
 
   /**
    * The URL is used in the `<link rel="canonical">` tag, JSON feed, and sitemap.
    * It should be the full URL to the site, including the protocol.
-   * 
+   *
    * @required
    * @type {URL}
    * @property {URL} url - The URL of the site.
    */
-  url: new URL("https://11ty-webc-starter.dwk.io"),
+  url: new URL('https://11ty-webc-starter.dwk.io'),
 
   /**
    * If present this will be used to generate the `<meta property="fediverse:creator">` tag.
-   * 
+   *
    * @see https://blog.joinmastodon.org/2024/07/highlighting-journalism-on-mastodon/
    * @optional
    * @property {string} fediverseCreator: the handle of the creator on the Fediverse.
@@ -45,7 +44,7 @@ export default {
 
   /**
    * See [RFC9116 Section 2.5.3](https://www.rfc-editor.org/rfc/rfc9116#section-2.5.3) for options
-   * 
+   *
    * @see https://www.rfc-editor.org/rfc/rfc9116#section-2.5.3
    * @optional
    * @property {string} securityContact - The contact email for security issues, used
@@ -55,15 +54,15 @@ export default {
 
   /**
    * If present this will be used to generate the `<meta name="copyright">` tag.
-   * 
+   *
    * @optional
    * @property {string} copyright - The copywrite string for the site
    */
-  copyright: `CC-BY-4.0 David W. Keith ${(new Date()).getFullYear()}`,
+  copyright: `CC-BY-4.0 David W. Keith ${new Date().getFullYear()}`,
 
   /**
    * This is used to generate the favicons for the site.
-   * 
+   *
    * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
    * @property {object} favicon - Favicon options.
    * @property {string} favicon.src - Path to the source image.
@@ -71,36 +70,36 @@ export default {
    * @property {number} favicon.appleIconPadding - Padding for the Apple touch icon.
    */
   favicon: {
-    src: "img/favicon.svg",
-    appleIconBgColor: "#FFFFFF",
+    src: 'img/favicon.svg',
+    appleIconBgColor: '#FFFFFF',
     appleIconPadding: 20,
   },
 
   /**
    * The content rating of the site, used in the `<meta name="rating">` tag.
    * If omitted the rating tag won't be output and is equivelent to "general"
-   * 
+   *
    * @see https://developers.google.com/search/docs/specialty/explicit/guidelines?udm=14#mark-specific-pages
    * @optional
    * @property {string} rating - either "general" or "adult"
    */
-  rating: "general",
+  rating: 'general',
 
   /**
    * The language for the content of the site, used in the `<html lang="">` attribute
    * and any other place where language information is needed. (assumes the entire site
    * is in the same language)
-   * 
+   *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/lang
    * @property {string} language - a valid BCP 47 language string
    * @default "en"
    */
-  language: "en",
+  language: 'en',
 
   /**
    * Controls whether the main navigation is rendered on the site.
    * Set to `false` for single-page sites or if navigation is handled differently.
-   * 
+   *
    * @property {boolean} hasNavigation - Whether to render the main navigation.
    * @default false
    */
@@ -109,7 +108,7 @@ export default {
   /**
    * Controls whether webmentions are enabled on the site.
    * Set to `false` to disable webmention fetching and display.
-   * 
+   *
    * @property {boolean} hasWebmentions - Whether to enable webmentions.
    * @default false
    */
@@ -118,11 +117,36 @@ export default {
   /**
    * Controls whether ActivityPub support is enabled on the site.
    * Set to `false` to disable generating ActivityPub representations.
-   * 
+   *
    * @property {boolean} hasActivityPub - Whether to enable ActivityPub.
    * @default true
    */
   hasActivityPub: true,
+
+  /**
+   * Controls whether Progressive Web App (PWA) features are enabled.
+   * Set to `false` to disable PWA manifest and service worker registration.
+   *
+   * @property {boolean} hasPWA - Whether to enable PWA features.
+   * @default true
+   */
+  hasPWA: true,
+
+  /**
+   * PWA specific settings for the web app manifest.
+   *
+   * @property {object} pwa
+   * @property {string} pwa.short_name - Short name for the PWA.
+   * @property {string} pwa.background_color - Background color for the PWA splash screen.
+   * @property {string} pwa.theme_color - Theme color for the PWA.
+   * @property {string} pwa.display - Display mode for the PWA (e.g., "standalone").
+   */
+  pwa: {
+    short_name: 'Starter',
+    background_color: '#ffffff',
+    theme_color: '#000000',
+    display: 'standalone',
+  },
 
   /**
    * Defines the author for the site, used in ActivityPub and other places.
@@ -131,35 +155,44 @@ export default {
    * @property {string} author.handle - The desired Fediverse handle (e.g., "blog").
    */
   author: {
-    name: "11ty WebC Starter",
-    handle: "blog"
+    name: '11ty WebC Starter',
+    handle: 'blog',
   },
 
   /**
    * Support for switching between dark and light mode in CSS.
-   * 
+   *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/color-scheme
    * @property {object} colorScheme - an object that defines the site's prefered color scheme
    * @property {string} colorScheme.content - the value of the content attribute
    * @property {string} [colorScheme.media] - the value of the media attribute
    */
   colorScheme: {
-    content: "light",
+    content: 'light',
     // media: "(prefers-color-scheme: dark)",
   },
 
   /**
    * A quick and easy way to add addtional `<link>` tags to the site's `<head>`.
-   * 
+   *
    * @optional
    * @property {object[]} headLinks - an array of objects, each representing a `<link>` tag.
    * @property {string} headLinks[].rel - the relationship of the link
    * @property {string} headLinks[].href - the URL of the link
    */
   headLinks: [
-    { rel: "code-repository", href: "https://github.com/davidwkeith/11ty-webc-starter.git" },
-    { rel: "issues", href: "https://github.com/davidwkeith/11ty-webc-starter/-/issues" },
-    { rel: "code-license", href: "https://opensource.org/license/isc-license-txt" },
+    {
+      rel: 'code-repository',
+      href: 'https://github.com/davidwkeith/11ty-webc-starter.git',
+    },
+    {
+      rel: 'issues',
+      href: 'https://github.com/davidwkeith/11ty-webc-starter/-/issues',
+    },
+    {
+      rel: 'code-license',
+      href: 'https://opensource.org/license/isc-license-txt',
+    },
   ],
 
   /**
@@ -175,7 +208,7 @@ export default {
   /**
    * The default Open Graph image for social sharing.
    * This will be used if no specific Open Graph image is defined for a page.
-   * 
+   *
    * @computed
    * @property {string} defaultOgImage - Path to the default Open Graph image.
    */
@@ -185,7 +218,7 @@ export default {
 
   /**
    * This gets mixed into the web-manifest for the site.
-   * 
+   *
    * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
    * @computed
    * @property {object} manifest - Web manifest options.
@@ -203,7 +236,7 @@ export default {
 
   /**
    * used in the build report for `humans.txt`
-   * 
+   *
    * @computed
    * @property {string} The git hash of the current HEAD
    */
@@ -211,9 +244,6 @@ export default {
     return childProcess
       .execSync('git rev-parse --short HEAD')
       .toString()
-      .trim()
+      .trim();
   },
-
-}
-
-  
+};

@@ -9,11 +9,11 @@
  * @property {string} @type - The schema.org type.
  */
 export default {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "author": {
-    "@type": "Person",
-    "name": "David W. Keith",
-    "url": "https://davidwkeith.com/"
-  }
-}
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  author: {
+    '@type': 'Person',
+    name: 'David W. Keith',
+    url: 'https://davidwkeith.com/',
+  },
+};

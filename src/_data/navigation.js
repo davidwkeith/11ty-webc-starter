@@ -7,7 +7,7 @@
  * @property {string} url - The URL the navigation link points to.
  */
 export default [
-  { text: "Home", url: "/" },
-  { text: "Posts", url: "/posts/" },
+  { text: 'Home', url: '/' },
+  { text: 'Posts', url: '/posts/' },
   // Add more navigation items here
 ];

@@ -10,6 +10,7 @@ layout: base.webc
 This starter project focuses on using webc with 11ty, no CSS or client-side JS.
 
 ## Posts
+
 <!--- Use WebC inside of Markdown --->
 <ul>
   <li webc:for="post of collections.post">

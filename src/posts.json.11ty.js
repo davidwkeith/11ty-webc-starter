@@ -2,11 +2,11 @@ export default class {
   data() {
     return {
       pagination: {
-        data: "collections.post",
+        data: 'collections.post',
         size: 1,
-        alias: "post",
+        alias: 'post',
       },
-      permalink: data => `/posts/${data.post.fileSlug}.json`,
+      permalink: (data) => `/posts/${data.post.fileSlug}.json`,
       eleventyExcludeFromCollections: true,
     };
   }
@@ -18,14 +18,14 @@ export default class {
     }
 
     const article = {
-      "@context": "https://www.w3.org/ns/activitystreams",
-      "type": "Article",
-      "id": `https://${new URL(site.url).hostname}${post.url}`,
-      "url": `https://${new URL(site.url).hostname}${post.url}`,
-      "name": post.data.title,
-      "content": post.templateContent,
-      "published": post.date.toISOString(),
-      "attributedTo": `https://${new URL(site.url).hostname}/actor.json`,
+      '@context': 'https://www.w3.org/ns/activitystreams',
+      type: 'Article',
+      id: `https://${new URL(site.url).hostname}${post.url}`,
+      url: `https://${new URL(site.url).hostname}${post.url}`,
+      name: post.data.title,
+      content: post.templateContent,
+      published: post.date.toISOString(),
+      attributedTo: `https://${new URL(site.url).hostname}/actor.json`,
     };
 
     return JSON.stringify(article, null, 2);
