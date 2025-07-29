@@ -9,9 +9,20 @@ const imgConfig = {
   }
 };
 
-
+/**
+ * Generates a JSON Feed for the site's blog posts.
+ * 
+ * @see https://jsonfeed.org/version/1
+ */
 export default class JSONFeed {
 
+  /**
+   * Defines the Eleventy data for the JSON Feed.
+   * 
+   * @returns {object} The Eleventy data object.
+   * @property {string} permalink - The output path for the JSON Feed.
+   * @property {boolean} eleventyExcludeFromCollections - Excludes this file from Eleventy collections.
+   */
   data() {
     return {
       permalink: "/feed.json",
@@ -19,6 +30,12 @@ export default class JSONFeed {
     }
   }
 
+  /**
+   * Renders the JSON Feed content.
+   * 
+   * @param {object} data - The Eleventy data cascade.
+   * @returns {Promise<string>} A promise that resolves to the JSON Feed string.
+   */
   async render(data) {
     const feed = {
       version: "https://jsonfeed.org/version/1",

@@ -1,4 +1,18 @@
+/**
+ * Generates the ActivityPub Actor object for the site.
+ * This file is responsible for creating the `actor.json` endpoint,
+ * which represents your site as an ActivityPub `Application` actor.
+ * 
+ * @see https://www.w3.org/TR/activitypub/#actor-objects
+ */
 export default class {
+  /**
+   * Defines the Eleventy data for the Actor object.
+   * 
+   * @returns {object} The Eleventy data object.
+   * @property {string} permalink - The output path for the Actor object.
+   * @property {boolean} eleventyExcludeFromCollections - Excludes this file from Eleventy collections.
+   */
   data() {
     return {
       permalink: "/actor.json",
@@ -6,6 +20,12 @@ export default class {
     };
   }
 
+  /**
+   * Renders the ActivityPub Actor object content.
+   * 
+   * @param {object} data - The Eleventy data cascade.
+   * @returns {string|null} A JSON string representing the Actor object, or `null` if ActivityPub is disabled.
+   */
   render(data) {
     const { site } = data;
     if (!site.hasActivityPub) {
