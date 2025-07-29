@@ -20,15 +20,27 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 
 ## Features
 
+### Templating & Content
+
 *   **Eleventy:** A simpler static site generator.
 *   **WebC:** Component-based templating for HTML, XML, and text files.
 *   **JSON Feed:** Automatically generated `feed.json` for your blog posts.
-*   **Favicon Generation:** Configurable favicon generation from a single SVG source.
-*   **Schema.org Integration:** Easy setup for structured data using JSON-LD.
-*   **Cloudflare Pages Ready:** Includes `_headers` and `_redirects` for Cloudflare Pages deployment.
+
+### Security
+
+*   **Content Security Policy (CSP):** A strict CSP is configured in `_headers` to help prevent XSS and other injection attacks.
 *   **Subresource Integrity (SRI):** Automated post-build process to add SHA-384 hashes to local CSS and JavaScript assets, enhancing security by ensuring assets haven't been tampered with.
+
+### SEO & Metadata
+
+*   **Schema.org Integration:** Easy setup for structured data using JSON-LD.
 *   **Theme Color:** A `theme-color` meta tag is automatically generated from the `appleIconBgColor` in `src/_data/site.js`.
 *   **Author Link:** A `rel="me"` link is automatically generated from the author's URL in `src/_data/schema.js`.
+
+### Deployment
+
+*   **Cloudflare Pages Ready:** Includes `_headers` and `_redirects` for Cloudflare Pages deployment.
+*   **Favicon Generation:** Configurable favicon generation from a single SVG source.
 
 ## Getting Started
 

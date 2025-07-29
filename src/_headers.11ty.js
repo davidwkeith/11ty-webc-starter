@@ -21,7 +21,13 @@ export default class Headers {
       headers: {
         "X-Frame-Options": "DENY",
         "X-Content-Type-Options": "nosniff",
-        "Referrer-Policy": "no-referrer-when-downgrade"
+        "Referrer-Policy": "no-referrer-when-downgrade",
+        "Content-Security-Policy": "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self'; frame-ancestors 'self'; form-action 'self';",
+        // In development, the 'Content-Security-Policy-Report-Only' header is used to monitor violations
+        // without blocking content. Before deploying to production, analyze the violation reports and
+        // adjust the main 'Content-Security-Policy' header as needed.
+        // For production, the 'Content-Security-Policy-Report-Only' header should be removed.
+        "Content-Security-Policy-Report-Only": "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self'; frame-ancestors 'self'; form-action 'self';"
       }
     }
   ]
