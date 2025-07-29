@@ -14,5 +14,5 @@
   <meta property="og:image" :content="ogImage($data.page.ogImage ?? $data.site.defaultOgImage)">
   <meta webc:if="$data.site.fediverseCreator" name="fediverse:creator" :content="$data.site.fediverseCreator">
   <meta webc:if="$data.site.copyright" name="copyright" :content="$data.site.copyright">
-  <meta webc:if="$data.site.rating" name="rating" content="$data.site.rating">
+  <meta webc:if="$data.site.rating" name="rating" :content="$data.site.rating">
 </template>

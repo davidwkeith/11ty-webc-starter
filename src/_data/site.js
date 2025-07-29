@@ -97,8 +97,6 @@ export default {
    */
   language: "en",
 
-  
-
   /**
    * Controls whether the main navigation is rendered on the site.
    * Set to `false` for single-page sites or if navigation is handled differently.
@@ -117,7 +115,7 @@ export default {
    * @property {string} [colorScheme.media] - the value of the media attribute
    */
   colorScheme: {
-    content: "dark light",
+    content: "light",
     // media: "(prefers-color-scheme: dark)",
   },
 
