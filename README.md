@@ -35,6 +35,7 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 *   **Schema.org Integration:** Easy setup for structured data using JSON-LD.
 *   **Theme Color:** A `theme-color` meta tag is automatically generated from the `appleIconBgColor` in `src/_data/site.js`.
 *   **Author Link:** A `rel="me"` link is automatically generated from the author's URL in `src/_data/schema.js`.
+*   **Webmention.io Integration:** Includes support for receiving and displaying webmentions, with a feature flag to easily enable or disable.
 
 ### Deployment
 
@@ -114,6 +115,7 @@ This starter uses `npm` scripts to automate common tasks:
 ├── .eleventy.config.js   # Eleventy configuration file
 ├── package.json          # Project dependencies and scripts
 ├── README.md             # This file
+├── LICENSE               # The ISC license file
 └── src/                  # All source files for your site
     ├── _data/            # Global data files (site.js, schema.js)
     ├── _includes/        # Reusable WebC components, CSS, JS
