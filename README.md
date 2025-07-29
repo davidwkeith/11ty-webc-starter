@@ -42,6 +42,10 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 - **PWA Ready:** Configured with a web app manifest (`manifest.webmanifest`) and a service worker (`service-worker.js`) for offline capabilities and installability.
 - **Automatic Icon Generation:** PWA icons (e.g., `icon-192.png`, `icon-512.png`) are automatically generated from `img/favicon.svg`.
 
+### Advanced CSS Processing
+
+- **PostCSS:** Processes CSS with plugins like Autoprefixer for enhanced compatibility and features.
+
 ### Deployment
 
 - **Cloudflare Pages Ready:** Includes `_headers` and `_redirects` for Cloudflare Pages deployment.

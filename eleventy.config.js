@@ -2,8 +2,9 @@ import dotenv from 'dotenv';
 import eleventyWebcPlugin from '@11ty/eleventy-plugin-webc';
 import { eleventyImagePlugin } from '@11ty/eleventy-img';
 import Image from '@11ty/eleventy-img';
-
 import htmlmin from 'html-minifier-terser';
+import postcss from 'postcss';
+import postcssLoadConfig from 'postcss-load-config';
 import markdownIt from 'markdown-it';
 import { lint } from 'jsonld-lint';
 
@@ -35,6 +36,14 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addBundle('css');
   eleventyConfig.addBundle('js');
+
+  eleventyConfig.addTransform('postcss', async function (content) {
+    if (this.page.outputPath && this.page.outputPath.endsWith('.css')) {
+      const { plugins, options } = await postcssLoadConfig();
+      return await postcss(plugins).process(content, options);
+    }
+    return content;
+  });
 
   eleventyConfig.addPlugin(eleventyWebcPlugin, {
     components: ['src/_includes/**/*.webc', 'npm:@11ty/eleventy-img/*.webc'],
