@@ -163,6 +163,7 @@ Contributions are welcome! If you find a bug or have a suggestion for improvemen
 ## TODO
 
 *   **Subresource Integrity (SRI):** Re-implement the automated post-build process to add SHA-384 hashes to local CSS and JavaScript assets.
+*   **Webmention Display:** Improve the display of webmentions.
 
 ## License
 
