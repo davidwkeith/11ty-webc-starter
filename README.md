@@ -29,7 +29,6 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 ### Security
 
 *   **Content Security Policy (CSP):** A strict CSP is configured in `_headers` to help prevent XSS and other injection attacks.
-*   **Subresource Integrity (SRI):** Automated post-build process to add SHA-384 hashes to local CSS and JavaScript assets, enhancing security by ensuring assets haven't been tampered with.
 
 ### SEO & Metadata
 
@@ -106,12 +105,7 @@ To start a fresh project using this starter, follow these steps:
 This starter uses `npm` scripts to automate common tasks:
 
 *   **`npm start`**: Starts the Eleventy development server with hot-reloading.
-*   **`npm run build`**: Builds the Eleventy site and then runs the `postbuild` script.
-*   **`npm run postbuild`**: (Automatically run after `npm run build`) Adds Subresource Integrity (SRI) hashes to generated CSS and JavaScript files.
-
-    ```bash
-    npm run build
-    ```
+*   **`npm run build`**: Builds the Eleventy site.
 
 ## Project Structure
 
@@ -158,13 +152,17 @@ This starter is designed for easy deployment to [Cloudflare Pages](https://pages
 
 1.  **Connect your Git repository:** Link your project's Git repository (e.g., GitHub, GitLab, Bitbucket) to Cloudflare Pages.
 2.  **Automatic Detection:** Cloudflare Pages will automatically detect that your project is an Eleventy site.
-3.  **Build & Deploy:** It will use the `npm install` command to install dependencies and `npm run build` to build your site. The `npm run build` command automatically includes Subresource Integrity (SRI) hashing for your assets. The output will be served from the `_site` directory.
+3.  **Build & Deploy:** It will use the `npm install` command to install dependencies and `npm run build` to build your site. The output will be served from the `_site` directory.
 
 No special configuration is typically required for Eleventy projects on Cloudflare Pages. For other hosting providers, consult their documentation for Eleventy deployment.
 
 ## Contributing
 
 Contributions are welcome! If you find a bug or have a suggestion for improvement, please open an issue or submit a pull request.
+
+## TODO
+
+*   **Subresource Integrity (SRI):** Re-implement the automated post-build process to add SHA-384 hashes to local CSS and JavaScript assets.
 
 ## License
 
