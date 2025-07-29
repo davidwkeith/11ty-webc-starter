@@ -29,6 +29,26 @@ export default class Headers {
         // For production, the 'Content-Security-Policy-Report-Only' header should be removed.
         "Content-Security-Policy-Report-Only": "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self'; frame-ancestors 'self'; form-action 'self';"
       }
+    },
+    { source: "/actor.json",
+      headers: {
+        "Content-Type": "application/activity+json"
+      }
+    },
+    { source: "/.well-known/webfinger",
+      headers: {
+        "Content-Type": "application/jrd+json"
+      }
+    },
+    { source: "/posts/*.json",
+      headers: {
+        "Content-Type": "application/activity+json"
+      }
+    },
+    { source: "/feed.json",
+      headers: {
+        "Content-Type": "application/json"
+      }
     }
   ]
 
