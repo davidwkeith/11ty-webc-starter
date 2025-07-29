@@ -11,4 +11,9 @@
 export default {
   "@context": "https://schema.org",
   "@type": "WebPage",
+  "author": {
+    "@type": "Person",
+    "name": "David W. Keith",
+    "url": "https://davidwkeith.com/"
+  }
 }

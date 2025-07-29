@@ -12,4 +12,5 @@
   <link webc:keep rel="stylesheet" :href="getBundleFileUrl('css')">
   <link rel="stylesheet" href="./main.css">
   <link type="text/plain" rel="author" :href="new URL('/humans.txt', $data.site.url)" />
+  <link webc:if="$data.schema.author.url" rel="me" :href="$data.schema.author.url">
 </template>

@@ -4,6 +4,7 @@
   "description": "A style-free starter for templating an entire 11ty site using WebC",
   "type": "module",
   "scripts": {
+    "start": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy",
     "postbuild": "node scripts/postbuild.js"
   },

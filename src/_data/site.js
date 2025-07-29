@@ -76,8 +76,6 @@ export default {
     appleIconPadding: 20,
   },
 
-  
-
   /**
    * The content rating of the site, used in the `<meta name="rating">` tag.
    * If omitted the rating tag won't be output and is equivelent to "general"
@@ -136,6 +134,16 @@ export default {
     { rel: "issues", href: "https://github.com/davidwkeith/11ty-webc-starter/-/issues" },
     { rel: "code-license", href: "https://opensource.org/license/isc-license-txt" },
   ],
+
+  /**
+   * The theme color for the site, used in the `<meta name="theme-color">` tag.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color
+   * @property {string} themeColor - The theme color for the site.
+   */
+  get themeColor() {
+    return this.favicon.appleIconBgColor;
+  },
 
   /**
    * The default Open Graph image for social sharing.

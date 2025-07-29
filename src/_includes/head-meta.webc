@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" :content="$data.eleventy.generator">
   <meta webc:if="$data.site.colorScheme" name="color-scheme" :content="$data.site.colorScheme.content" :media="$data.site.colorScheme.media">
+  <meta webc:if="$data.site.themeColor" name="theme-color" :content="$data.site.themeColor">
   <meta webc:if="$data.description || $data.schema?.description" name="description" :content="$data.description ?? $data.schema.description">
-
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" :content="new URL($data.page.url, $data.site.url)">
   <meta property="og:title" :content="$data.title ?? $data.site.title">

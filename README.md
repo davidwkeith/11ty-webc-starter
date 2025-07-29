@@ -13,6 +13,11 @@ This starter aims to provide a clean, unopinionated foundation for building stat
 *   **Essential Features:** Includes common features like JSON Feed generation, favicon support, and Schema.org integration.
 *   **Clear Structure:** A well-organized project structure that's easy to understand and extend.
 
+## Demo
+
+A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://11ty-webc-starter.dwk.io).
+
+
 ## Features
 
 *   **Eleventy:** A simpler static site generator.
@@ -22,6 +27,8 @@ This starter aims to provide a clean, unopinionated foundation for building stat
 *   **Schema.org Integration:** Easy setup for structured data using JSON-LD.
 *   **Cloudflare Pages Ready:** Includes `_headers` and `_redirects` for Cloudflare Pages deployment.
 *   **Subresource Integrity (SRI):** Automated post-build process to add SHA-384 hashes to local CSS and JavaScript assets, enhancing security by ensuring assets haven't been tampered with.
+*   **Theme Color:** A `theme-color` meta tag is automatically generated from the `appleIconBgColor` in `src/_data/site.js`.
+*   **Author Link:** A `rel="me"` link is automatically generated from the author's URL in `src/_data/schema.js`.
 
 ## Getting Started
 
@@ -86,7 +93,7 @@ To start a fresh project using this starter, follow these steps:
 
 This starter uses `npm` scripts to automate common tasks:
 
-*   **`npm install`**: Installs project dependencies.
+*   **`npm start`**: Starts the Eleventy development server with hot-reloading.
 *   **`npm run build`**: Builds the Eleventy site and then runs the `postbuild` script.
 *   **`npm run postbuild`**: (Automatically run after `npm run build`) Adds Subresource Integrity (SRI) hashes to generated CSS and JavaScript files.
 
