@@ -6,7 +6,9 @@
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy",
-    "test": "npm run build"
+    "test": "npm run build",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,24 @@
     "url": "https://github.com/davidwkeith/11ty-webc-starter/issues"
   },
   "homepage": "https://github.com/davidwkeith/11ty-webc-starter#readme",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ],
+    "*.webc": [
+      "prettier --write"
+    ],
+    "*.css": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-fetch": "^5.1.0",
@@ -35,6 +55,12 @@
     "dotenv": "^17.2.0",
     "eleventy-plugin-gen-favicons": "^1.1.3",
     "html-minifier-terser": "^7.2.0",
-    "jsonld-lint": "^0.3.0"
+    "jsonld-lint": "^0.3.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.6.2"
   }
 }
