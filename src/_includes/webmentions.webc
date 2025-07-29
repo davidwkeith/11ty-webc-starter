@@ -1,0 +1,14 @@
+<template webc:nokeep webc:component="webmentions">
+  <div webc:if="$data.webmentions?.length > 0">
+    <h3>Webmentions</h3>
+    <ul class="webmentions">
+      <li webc:for="mention in $data.webmentions">
+        <a :href="mention.url" class="webmention__author">
+          <img :src="mention.author.photo" :alt="mention.author.name" class="webmention__author__photo">
+          <span class="webmention__author__name" @text="mention.author.name"></span>
+        </a>
+        <div class="webmention__content" @raw="mention.content.html || mention.content.text"></div>
+      </li>
+    </ul>
+  </div>
+</template>

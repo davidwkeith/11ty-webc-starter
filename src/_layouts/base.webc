@@ -23,6 +23,7 @@
     </header>
     <main id="main-content">
       <slot><template webc:nokeep @raw="this.content"></template></slot>
+      <div webc:is="webmentions" webc:if="$data.site.hasWebmentions"></div>
     </main>
     <footer></footer>
     <style webc:keep @raw="getBundle('css', 'defer')"></style>

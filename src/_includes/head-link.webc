@@ -13,4 +13,8 @@
   <link rel="stylesheet" href="./main.css">
   <link type="text/plain" rel="author" :href="new URL('/humans.txt', $data.site.url)" />
   <link webc:if="$data.schema.author.url" rel="me" :href="$data.schema.author.url">
+  <template webc:if="$data.site.hasWebmentions">
+    <link rel="webmention" :href="`https://webmention.io/${new URL($data.site.url).hostname}/webmention`">
+    <link rel="pingback" :href="`https://webmention.io/${new URL($data.site.url).hostname}/xmlrpc`">
+  </template>
 </template>

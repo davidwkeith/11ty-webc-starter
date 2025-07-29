@@ -102,9 +102,18 @@ export default {
    * Set to `false` for single-page sites or if navigation is handled differently.
    * 
    * @property {boolean} hasNavigation - Whether to render the main navigation.
-   * @default true
+   * @default false
    */
-  hasNavigation: true,
+  hasNavigation: false,
+
+  /**
+   * Controls whether webmentions are enabled on the site.
+   * Set to `false` to disable webmention fetching and display.
+   * 
+   * @property {boolean} hasWebmentions - Whether to enable webmentions.
+   * @default false
+   */
+  hasWebmentions: false,
 
   /**
    * Support for switching between dark and light mode in CSS.
