@@ -36,6 +36,7 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 *   **Theme Color:** A `theme-color` meta tag is automatically generated from the `appleIconBgColor` in `src/_data/site.js`.
 *   **Author Link:** A `rel="me"` link is automatically generated from the author's URL in `src/_data/schema.js`.
 *   **Webmention.io Integration:** Includes support for receiving and displaying webmentions, with a feature flag to easily enable or disable.
+*   **ActivityPub Integration:** Generates an ActivityPub actor and representations for each post, making the site discoverable and interactive on the Fediverse.
 
 ### Deployment
 

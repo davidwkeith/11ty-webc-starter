@@ -113,7 +113,27 @@ export default {
    * @property {boolean} hasWebmentions - Whether to enable webmentions.
    * @default false
    */
-  hasWebmentions: false,
+  hasWebmentions: true,
+
+  /**
+   * Controls whether ActivityPub support is enabled on the site.
+   * Set to `false` to disable generating ActivityPub representations.
+   * 
+   * @property {boolean} hasActivityPub - Whether to enable ActivityPub.
+   * @default true
+   */
+  hasActivityPub: true,
+
+  /**
+   * Defines the author for the site, used in ActivityPub and other places.
+   * @property {object} author
+   * @property {string} author.name - The name of the author.
+   * @property {string} author.handle - The desired Fediverse handle (e.g., "blog").
+   */
+  author: {
+    name: "11ty WebC Starter",
+    handle: "blog"
+  },
 
   /**
    * Support for switching between dark and light mode in CSS.
