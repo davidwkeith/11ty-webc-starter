@@ -12,6 +12,17 @@
   <meta property="og:title" :content="$data.title ?? $data.site.title">
   <meta property="og:description" :content="$data.description ?? $data.schema?.description ?? $data.site.description">
   <meta property="og:image" :content="ogImage($data.page.ogImage ?? $data.site.defaultOgImage)">
+  <meta webc:if="$data.site.hasPWA" name="apple-mobile-web-app-capable" content="yes">
+  <meta webc:if="$data.site.hasPWA" name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta webc:if="$data.site.hasPWA" name="apple-mobile-web-app-title" :content="$data.site.title">
+  <!--- Twitter Card meta tags (conditionally rendered based on $data.site.hasTwitter in site.js) --->
+  <!--- Consider using Fediverse or Bluesky alternatives for social sharing. --->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" :content="$data.site.twitterUsername">
+  <meta name="twitter:creator" :content="$data.site.twitterUsername">
+  <meta name="twitter:title" :content="$data.title ?? $data.site.title">
+  <meta name="twitter:description" :content="$data.description ?? $data.schema?.description ?? $data.site.description">
+  <meta name="twitter:image" :content="ogImage($data.page.ogImage ?? $data.site.defaultOgImage)">
   <meta webc:if="$data.site.fediverseCreator" name="fediverse:creator" :content="$data.site.fediverseCreator">
   <meta webc:if="$data.site.copyright" name="copyright" :content="$data.site.copyright">
   <meta webc:if="$data.site.rating" name="rating" :content="$data.site.rating">

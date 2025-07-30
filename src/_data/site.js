@@ -34,6 +34,25 @@ export default {
   url: new URL('https://11ty-webc-starter.dwk.io'),
 
   /**
+   * Controls whether Twitter Card meta tags are enabled.
+   * Set to `false` to disable Twitter Card generation.
+   * Consider using Fediverse or Bluesky alternatives for social sharing.
+   *
+   * @property {boolean} hasTwitter - Whether to enable Twitter Card meta tags.
+   * @default false
+   */
+  hasTwitter: false,
+
+  /**
+   * The Twitter username for the site, used in the `twitter:site` and `twitter:creator` meta tags.
+   * Include the `@` symbol (e.g., "@your_twitter_handle").
+   *
+   * @optional
+   * @property {string} twitterUsername - The Twitter username for the site.
+   */
+  // twitterUsername: "@your_twitter_handle",
+
+  /**
    * If present this will be used to generate the `<meta property="fediverse:creator">` tag.
    *
    * @see https://blog.joinmastodon.org/2024/07/highlighting-journalism-on-mastodon/

@@ -7,6 +7,10 @@
     <meta webc:is="head-meta" />
     <link webc:is="head-link" />
     <script webc:is="head-js"></script>
+    <template webc:if="$data.site.hasTwitter">
+      <!-- Twitter Card meta tags (conditionally rendered based on $data.site.hasTwitter in site.js) -->
+      <!-- Consider using Fediverse or Bluesky alternatives for social sharing. -->
+    </template>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>

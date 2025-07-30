@@ -22,6 +22,27 @@ To enable ActivityPub, you will need to:
 2.  **Update your actor details:** In `src/_data/site.js`, update the `author` object with your desired name and handle.
 3.  **Generate a keypair:** The `actor.json` file requires a public key. You will need to generate a public/private key pair and add the public key to the `publicKeyPem` property in `src/actor.json.11ty.js`.
 
+## Twitter Card Meta Tags
+
+This starter includes support for [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview), which allows you to control how your content appears when shared on Twitter.
+
+To configure Twitter Cards:
+
+1.  **Enable the feature:** In `src/_data/site.js`, set the `hasTwitter` property to `true`.
+2.  **Set your Twitter username:** In `src/_data/site.js`, uncomment and set the `twitterUsername` property to your Twitter handle (e.g., `@your_twitter_handle`). This will be used for both `twitter:site` and `twitter:creator` meta tags.
+3.  **Consider alternatives:** While Twitter Cards are supported, consider using Fediverse or Bluesky alternatives for social sharing, as these platforms offer more open and decentralized options.
+4.  **Ensure Open Graph Image:** The `twitter:image` meta tag uses the same logic as the Open Graph image (`og:image`). Ensure your `defaultOgImage` in `src/_data/site.js` is set, or define `ogImage` in your page's front matter.
+
+## Progressive Web App (PWA) Meta Tags
+
+In addition to the PWA manifest, this starter includes specific meta tags to enhance the PWA experience on iOS devices.
+
+- `apple-mobile-web-app-capable`: Configures the web application to run in full-screen mode.
+- `apple-mobile-web-app-status-bar-style`: Defines the style of the status bar for the web application.
+- `apple-mobile-web-app-title`: Specifies the title of the web application on the home screen.
+
+These tags are automatically included when `hasPWA` is set to `true` in `src/_data/site.js`.
+
 ## Favicon Generation
 
 This starter automates favicon generation from a single SVG source (`img/favicon.svg`). The `favicon` shortcode (defined in `config/shortcodes.js`) handles the creation of multiple favicon formats and sizes, ensuring optimal display across various browsers and devices.

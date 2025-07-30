@@ -36,6 +36,7 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 - **Author Link:** A `rel="me"` link is automatically generated from the author's URL in `src/_data/schema.js`.
 - **Webmention.io Integration:** Includes support for receiving and displaying webmentions, with a feature flag to easily enable or disable.
 - **ActivityPub Integration:** Generates an ActivityPub actor and representations for each post, making the site discoverable and interactive on the Fediverse.
+- **Twitter Card Support:** Configured to generate Twitter Card meta tags (`twitter:card`, `twitter:site`, `twitter:creator`, `twitter:title`, `twitter:description`, `twitter:image`) for enhanced social sharing on Twitter. This feature can be enabled/disabled via the `hasTwitter` flag in `src/_data/site.js`. Consider using Fediverse or Bluesky alternatives for social sharing.
 
 ### Progressive Web App (PWA)
 
