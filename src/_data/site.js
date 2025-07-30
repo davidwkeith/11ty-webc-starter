@@ -12,6 +12,16 @@ const pkg = require('../../package.json');
  */
 export default {
   /**
+   * The title of the site, used in the `<title>` tag and as the main heading.
+   * Also used in the JSON (RSS) Feed. See the `base.webc` template for individual
+   * page title computation.
+   *
+   * @required
+   * @property {string} title - Site title
+   */
+  title: '11ty WebC Starter',
+
+  /**
    * If present this will be used to generate the `<meta property="fediverse:creator">` tag.
    *
    * @see https://blog.joinmastodon.org/2024/07/highlighting-journalism-on-mastodon/
@@ -23,7 +33,6 @@ export default {
   /**
    * This is used to generate the favicons for the site.
    *
-   * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
    * @property {object} favicon - Favicon options.
    * @property {string} favicon.src - Path to the source image.
    * @property {string} favicon.appleIconBgColor - Background color for the Apple touch icon.
@@ -72,15 +81,6 @@ export default {
   hasPWA: true,
 
   /**
-   * Controls whether Open Graph meta tags are enabled.
-   * Set to `false` to disable Open Graph generation.
-   *
-   * @property {boolean} hasOpenGraph - Whether to enable Open Graph meta tags.
-   * @default true
-   */
-  hasOpenGraph: true,
-
-  /**
    * PWA specific settings for the web app manifest.
    *
    * @property {object} pwa
@@ -95,6 +95,15 @@ export default {
     theme_color: '#000000',
     display: 'standalone',
   },
+
+  /**
+   * Controls whether Open Graph meta tags are enabled.
+   * Set to `false` to disable Open Graph generation.
+   *
+   * @property {boolean} hasOpenGraph - Whether to enable Open Graph meta tags.
+   * @default true
+   */
+  hasOpenGraph: true,
 
   /**
    * Support for switching between dark and light mode in CSS.
@@ -148,18 +157,6 @@ export default {
    * @default "en"
    */
   language: 'en',
-
-  /**
-   * The title of the site, used in the `<title>` tag and as the main heading.
-   * Also used in the JSON (RSS) Feed. See the `base.webc` template for individual
-   * page title computation.
-   *
-   * Sourced from the `name` property in `package.json`.
-   * @required
-   * @computed
-   * @property {string} title - Site title
-   */
-  title: pkg.name,
 
   /**
    * Description is used in the `<meta name="description">` tag.

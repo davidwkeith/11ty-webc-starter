@@ -178,7 +178,7 @@ Lighthouse will provide a detailed report on your PWA's performance, accessibili
 
 ### Site Configuration (`package.json` and `src/_data/site.js`)
 
-Key site-wide variables such as the site title, description, and URL are sourced directly from `package.json`. This approach centralizes your project's metadata, making it easier to manage and update. For more advanced configurations and settings not found in `package.json`, refer to `src/_data/site.js`. The JSDoc comments within `src/_data/site.js` provide detailed explanations for each property.
+Key site-wide variables such as the description, and URL are sourced directly from `package.json`. This approach centralizes your project's metadata, making it easier to manage and update. For more advanced configurations and settings not found in `package.json`, refer to `src/_data/site.js`. The JSDoc comments within `src/_data/site.js` provide detailed explanations for each property.
 
 ### Schema Data (`src/_data/schema.js`)
 
