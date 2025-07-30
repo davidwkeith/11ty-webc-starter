@@ -22,8 +22,8 @@ export default class {
         : []),
       // Add static assets
       '/img/favicon.svg',
-      '/icon-192.png',
-      '/icon-512.png',
+      '/img/favicons/favicon-192.png',
+      '/img/favicons/favicon-512.png',
       '/manifest.webmanifest',
     ];
 

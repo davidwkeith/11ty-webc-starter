@@ -48,22 +48,23 @@
     ]
   },
   "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-fetch": "^5.1.0",
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-webc": "^0.11.2",
-    "@11ty/eleventy": "^3.1.2",
     "autoprefixer": "^10.4.21",
     "dotenv": "^17.2.0",
+    "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
-    "eslint": "^9.32.0",
     "html-minifier-terser": "^7.2.0",
     "husky": "^9.1.7",
     "jsonld-lint": "^0.3.0",
     "lint-staged": "^15.5.2",
+    "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "postcss-load-config": "^6.0.1",
-    "postcss": "^8.5.6",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "sharp": "^0.34.3"
   }
 }

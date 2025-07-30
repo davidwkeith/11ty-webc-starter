@@ -40,7 +40,7 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 ### Progressive Web App (PWA)
 
 - **PWA Ready:** Configured with a web app manifest (`manifest.webmanifest`) and a service worker (`service-worker.js`) for offline capabilities and installability.
-- **Automatic Icon Generation:** PWA icons (e.g., `icon-192.png`, `icon-512.png`) are automatically generated from `img/favicon.svg` during the build process.
+  - **Automatic Icon Generation:** PWA icons (e.g., `favicon-192.png`, `favicon-512.png`) are automatically generated from `img/favicon.svg` during the build process.
 
 ### Advanced CSS Processing
 
@@ -49,7 +49,13 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 ### Deployment
 
 - **Cloudflare Pages Ready:** Includes `_headers` and `_redirects` for Cloudflare Pages deployment.
-- **Favicon Generation:** Configurable favicon generation from a single SVG source.
+- **Favicon Generation:**
+  This starter includes robust favicon support, automatically generating various favicon formats from a single `img/favicon.svg` source file. This ensures optimal display across different browsers and devices.
+  - **Multi-resolution ICO:** A `favicon.ico` file is generated with multiple resolutions (16x16, 24x24, 32x32, 48x48, 64x64, 128x128, 256x256) for broad browser compatibility.
+  - **PNG Icons:** Specific PNG sizes (e.g., 180x180 for Apple Touch Icon) are generated for PWA and mobile device compatibility.
+  - **SVG Favicon:** The original `favicon.svg` is also linked for modern browsers that support SVG favicons, providing a crisp, scalable icon.
+
+  All generated favicons are automatically linked in the `<head>` section of your HTML, ensuring proper display without manual intervention.
 
 ## Getting Started
 
@@ -144,7 +150,13 @@ Lighthouse will provide a detailed report on your PWA's performance, accessibili
 
 ```
 .
-├── .eleventy.config.js   # Eleventy configuration file
+├── config/               # Eleventy configuration files
+│   ├── eleventy.config.js
+│   ├── filters.js
+│   ├── libraries.js
+│   ├── plugins.js
+│   ├── shortcodes.js
+│   └── transforms.js
 ├── package.json          # Project dependencies and scripts
 ├── README.md             # This file
 ├── LICENSE               # The ISC license file

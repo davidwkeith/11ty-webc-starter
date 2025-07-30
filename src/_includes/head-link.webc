@@ -4,9 +4,7 @@
 <template webc:nokeep webc:component="head-link">
   <link webc:if="$data.page.url" rel="canonical" :href="new URL($data.page.url, $data.site.url)">
   <link webc:if="$data.site.headLinks" webc:for="link of $data.site.headLinks" :rel="link.rel" :href="link.href">
-  <link webc:if="$data.site.hasPWA" rel="icon" href="/icon-192.png" sizes="192x192">
-  <link webc:if="$data.site.hasPWA" rel="apple-touch-icon" href="/icon-192.png" sizes="192x192">
-  <link webc:if="$data.site.hasPWA" rel="icon" href="/icon-512.png" sizes="512x512">
+  <webc-keep @html="favicon('img/favicon.svg')"></webc-keep>
   <link webc:if="$data.site.hasPWA" rel="manifest" href="/manifest.webmanifest">
   <link rel="alternate" type="application/json" :href="new URL('/feed.json', $data.site.url)" />
   <link webc:keep rel="stylesheet" :href="getBundleFileUrl('css')">
