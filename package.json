@@ -25,10 +25,26 @@
     "url": "https://dwk.io/"
   },
   "license": "ISC",
+  "licenseUrl": "https://opensource.org/licenses/ISC",
   "bugs": {
-    "url": "https://github.com/davidwkeith/11ty-webc-starter/issues"
+    "url": "https://github.com/davidwkeith/11ty-webc-starter/issues",
+    "email": "git@dwk.io"
   },
-  "homepage": "https://github.com/davidwkeith/11ty-webc-starter#readme",
+  "funding": "https://www.buymeacoffee.com/davidwkeith",
+  "homepage": "https://11ty-webc-starter.dwk.io",
+  "engines": {
+    "node": ">=20.11.1",
+    "npm": ">=10.9.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
   "lint-staged": {
     "*.js": [
       "eslint --fix",

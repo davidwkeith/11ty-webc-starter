@@ -4,6 +4,9 @@ import prettierRecommended from 'eslint-plugin-prettier/recommended';
 
 export default [
   {
+    ignores: ['_site/**'],
+  },
+  {
     languageOptions: {
       ecmaVersion: 12,
       sourceType: 'module',

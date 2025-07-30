@@ -4,27 +4,29 @@
  * @see https://developers.cloudflare.com/pages/configuration/redirects/
  */
 export default class Redirects {
-  /**
-   * Defines the redirects to be output to the `_redirects` file.
-   * Each object in the array represents a redirect rule.
-   *
-   * @property {string} source - The path to redirect from (e.g., "/old-path").
-   * @property {string} destination - The path to redirect to (e.g., "/new-path").
-   * @property {number} code - The HTTP status code for the redirect (e.g., 301, 302).
-   * @type {Array<Object>}
-   */
-  redirects = [
-    // {
-    //   source: "/old-page",
-    //   destination: "/new-page",
-    //   code: 301
-    // },
-    // {
-    //   source: "/another-old-page",
-    //   destination: "/another-new-page",
-    //   code: 302
-    // }
-  ];
+  constructor() {
+    /**
+     * Defines the redirects to be output to the `_redirects` file.
+     * Each object in the array represents a redirect rule.
+     *
+     * @property {string} source - The path to redirect from (e.g., "/old-path").
+     * @property {string} destination - The path to redirect to (e.g., "/new-path").
+     * @property {number} code - The HTTP status code for the redirect (e.g., 301, 302).
+     * @type {Array<Object>}
+     */
+    this.redirects = [
+      // {
+      //   source: "/old-page",
+      //   destination: "/new-page",
+      //   code: 301
+      // },
+      // {
+      //   source: "/another-old-page",
+      //   destination: "/another-new-page",
+      //   code: 302
+      // }
+    ];
+  }
 
   /**
    * Eleventy data method to define permalink and exclude from collections.
@@ -42,7 +44,7 @@ export default class Redirects {
    * @param {object} data - Eleventy's data cascade.
    * @returns {Promise<string>} The formatted redirects string.
    */
-  async render(data) {
+  async render(_data) {
     let output = [];
 
     this.redirects.forEach((redirectConfig) => {

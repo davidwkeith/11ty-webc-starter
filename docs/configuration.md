@@ -19,8 +19,17 @@ This starter includes support for [ActivityPub](https://www.w3.org/TR/activitypu
 To enable ActivityPub, you will need to:
 
 1.  **Enable the feature:** In `src/_data/site.js`, set the `hasActivityPub` property to `true`.
-2.  **Update your actor details:** In `src/_data/site.js`, update the `author` object with your desired name and handle.
+2.  **Update your actor details:** In `src/_data/site.js`, update the `fediverseCreator` property with your desired handle.
 3.  **Generate a keypair:** The `actor.json` file requires a public key. You will need to generate a public/private key pair and add the public key to the `publicKeyPem` property in `src/actor.json.11ty.js`.
+
+## Open Graph Meta Tags
+
+This starter includes support for [Open Graph](https://ogp.me/), which allows you to control how your content appears when shared on social media.
+
+To configure Open Graph:
+
+1.  **Enable the feature:** In `src/_data/site.js`, set the `hasOpenGraph` property to `true`.
+2.  **Ensure Open Graph Image:** The `og:image` meta tag uses the `defaultOgImage` in `src/_data/site.js` as a fallback. Ensure this is set, or define `ogImage` in your page's front matter.
 
 ## Twitter Card Meta Tags
 

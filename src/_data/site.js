@@ -1,37 +1,113 @@
 import childProcess from 'node:child_process';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const pkg = require('../../package.json');
 
 /**
  * These are all the site-level variables. Often used as fallback for page-level data.
+ *
+ * Some of these values are sourced from `package.json`.
+ * @see package.json
  */
 export default {
   /**
-   * The title of the site, used in the `<title>` tag and as the main heading.
-   * Also used in the JSON (RSS) Feed. See the `base.webc` template for individual
-   * page title computation.
+   * If present this will be used to generate the `<meta property="fediverse:creator">` tag.
    *
-   * @required
-   * @property {string} title - Site title
+   * @see https://blog.joinmastodon.org/2024/07/highlighting-journalism-on-mastodon/
+   * @optional
+   * @property {string} fediverseCreator: the handle of the creator on the Fediverse.
    */
-  title: '11ty WebC Starter',
+  fediverseCreator: '@dwk@xn--4t8h.dwk.io',
 
   /**
-   * Description is used in the `<meta name="description">` tag.
-   * if the description is not set in front matter for the individual page.
-   * This is also used in the JSON Feed.
+   * This is used to generate the favicons for the site.
    *
-   * @property {string} description - A short description of the site.
+   * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
+   * @property {object} favicon - Favicon options.
+   * @property {string} favicon.src - Path to the source image.
+   * @property {string} favicon.appleIconBgColor - Background color for the Apple touch icon.
+   * @property {number} favicon.appleIconPadding - Padding for the Apple touch icon.
    */
-  description: 'A simple 11ty starter site using Webc templating.',
+  favicon: {
+    src: 'img/favicon.svg',
+    appleIconBgColor: '#FFFFFF',
+    appleIconPadding: 20,
+  },
 
   /**
-   * The URL is used in the `<link rel="canonical">` tag, JSON feed, and sitemap.
-   * It should be the full URL to the site, including the protocol.
+   * Controls whether the main navigation is rendered on the site.
+   * Set to `false` for single-page sites or if navigation is handled differently.
    *
-   * @required
-   * @type {URL}
-   * @property {URL} url - The URL of the site.
+   * @property {boolean} hasNavigation - Whether to render the main navigation.
+   * @default false
    */
-  url: new URL('https://11ty-webc-starter.dwk.io'),
+  hasNavigation: false,
+
+  /**
+   * Controls whether webmentions are enabled on the site.
+   * Set to `false` to disable webmention fetching and display.
+   *
+   * @property {boolean} hasWebmentions - Whether to enable webmentions.
+   * @default false
+   */
+  hasWebmentions: false,
+
+  /**
+   * Controls whether ActivityPub support is enabled on the site.
+   * Set to `false` to disable generating ActivityPub representations.
+   *
+   * @property {boolean} hasActivityPub - Whether to enable ActivityPub.
+   * @default true
+   */
+  hasActivityPub: true,
+
+  /**
+   * Controls whether Progressive Web App (PWA) features are enabled.
+   * Set to `false` to disable PWA manifest and service worker registration.
+   *
+   * @property {boolean} hasPWA - Whether to enable PWA features.
+   * @default true
+   */
+  hasPWA: true,
+
+  /**
+   * Controls whether Open Graph meta tags are enabled.
+   * Set to `false` to disable Open Graph generation.
+   *
+   * @property {boolean} hasOpenGraph - Whether to enable Open Graph meta tags.
+   * @default true
+   */
+  hasOpenGraph: true,
+
+  /**
+   * PWA specific settings for the web app manifest.
+   *
+   * @property {object} pwa
+   * @property {string} pwa.short_name - Short name for the PWA.
+   * @property {string} pwa.background_color - Background color for the PWA splash screen.
+   * @property {string} pwa.theme_color - Theme color for the PWA.
+   * @property {string} pwa.display - Display mode for the PWA (e.g., "standalone").
+   */
+  pwa: {
+    short_name: 'Starter',
+    background_color: '#ffffff',
+    theme_color: '#000000',
+    display: 'standalone',
+  },
+
+  /**
+   * Support for switching between dark and light mode in CSS.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/color-scheme
+   * @property {object} colorScheme - an object that defines the site's prefered color scheme
+   * @property {string} colorScheme.content - the value of the content attribute
+   * @property {string} [colorScheme.media] - the value of the media attribute
+   */
+  colorScheme: {
+    content: 'light',
+    // media: "(prefers-color-scheme: dark)",
+  },
 
   /**
    * Controls whether Twitter Card meta tags are enabled.
@@ -51,48 +127,6 @@ export default {
    * @property {string} twitterUsername - The Twitter username for the site.
    */
   // twitterUsername: "@your_twitter_handle",
-
-  /**
-   * If present this will be used to generate the `<meta property="fediverse:creator">` tag.
-   *
-   * @see https://blog.joinmastodon.org/2024/07/highlighting-journalism-on-mastodon/
-   * @optional
-   * @property {string} fediverseCreator: the handle of the creator on the Fediverse.
-   */
-  // fediverseCreator: "@11ty-webc-starter@example.com",
-
-  /**
-   * See [RFC9116 Section 2.5.3](https://www.rfc-editor.org/rfc/rfc9116#section-2.5.3) for options
-   *
-   * @see https://www.rfc-editor.org/rfc/rfc9116#section-2.5.3
-   * @optional
-   * @property {string} securityContact - The contact email for security issues, used
-   *                                      in /.well-known/security.txt.
-   */
-  // securityContact: "mailto:security@example.com",
-
-  /**
-   * If present this will be used to generate the `<meta name="copyright">` tag.
-   *
-   * @optional
-   * @property {string} copyright - The copywrite string for the site
-   */
-  copyright: `CC-BY-4.0 David W. Keith ${new Date().getFullYear()}`,
-
-  /**
-   * This is used to generate the favicons for the site.
-   *
-   * @see https://github.com/NJAldwin/eleventy-plugin-gen-favicons
-   * @property {object} favicon - Favicon options.
-   * @property {string} favicon.src - Path to the source image.
-   * @property {string} favicon.appleIconBgColor - Background color for the Apple touch icon.
-   * @property {number} favicon.appleIconPadding - Padding for the Apple touch icon.
-   */
-  favicon: {
-    src: 'img/favicon.svg',
-    appleIconBgColor: '#FFFFFF',
-    appleIconPadding: 20,
-  },
 
   /**
    * The content rating of the site, used in the `<meta name="rating">` tag.
@@ -116,85 +150,61 @@ export default {
   language: 'en',
 
   /**
-   * Controls whether the main navigation is rendered on the site.
-   * Set to `false` for single-page sites or if navigation is handled differently.
+   * The title of the site, used in the `<title>` tag and as the main heading.
+   * Also used in the JSON (RSS) Feed. See the `base.webc` template for individual
+   * page title computation.
    *
-   * @property {boolean} hasNavigation - Whether to render the main navigation.
-   * @default false
+   * Sourced from the `name` property in `package.json`.
+   * @required
+   * @computed
+   * @property {string} title - Site title
    */
-  hasNavigation: false,
+  title: pkg.name,
 
   /**
-   * Controls whether webmentions are enabled on the site.
-   * Set to `false` to disable webmention fetching and display.
+   * Description is used in the `<meta name="description">` tag.
+   * if the description is not set in front matter for the individual page.
+   * This is also used in the JSON Feed.
    *
-   * @property {boolean} hasWebmentions - Whether to enable webmentions.
-   * @default false
+   * Sourced from the `description` property in `package.json`.
+   * @computed
+   * @property {string} description - A short description of the site.
    */
-  hasWebmentions: true,
+  description: pkg.description,
 
   /**
-   * Controls whether ActivityPub support is enabled on the site.
-   * Set to `false` to disable generating ActivityPub representations.
+   * The URL is used in the `<link rel="canonical">` tag, JSON feed, and sitemap.
+   * It should be the full URL to the site, including the protocol.
    *
-   * @property {boolean} hasActivityPub - Whether to enable ActivityPub.
-   * @default true
+   * Sourced from the `homepage` property in `package.json`.
+   * @required
+   * @type {URL}
+   * @computed
+   * @property {URL} url - The URL of the site.
    */
-  hasActivityPub: true,
+  url: new URL(pkg.homepage),
 
   /**
-   * Controls whether Progressive Web App (PWA) features are enabled.
-   * Set to `false` to disable PWA manifest and service worker registration.
-   *
-   * @property {boolean} hasPWA - Whether to enable PWA features.
-   * @default true
+   * Sourced from the `keywords` property in `package.json`.
+   * @computed
+   * @property {string[]} keywords - An array of keywords for the site.
    */
-  hasPWA: true,
-
-  /**
-   * PWA specific settings for the web app manifest.
-   *
-   * @property {object} pwa
-   * @property {string} pwa.short_name - Short name for the PWA.
-   * @property {string} pwa.background_color - Background color for the PWA splash screen.
-   * @property {string} pwa.theme_color - Theme color for the PWA.
-   * @property {string} pwa.display - Display mode for the PWA (e.g., "standalone").
-   */
-  pwa: {
-    short_name: 'Starter',
-    background_color: '#ffffff',
-    theme_color: '#000000',
-    display: 'standalone',
-  },
+  keywords: pkg.keywords,
 
   /**
    * Defines the author for the site, used in ActivityPub and other places.
-   * @property {object} author
-   * @property {string} author.name - The name of the author.
-   * @property {string} author.handle - The desired Fediverse handle (e.g., "blog").
+   * Sourced from the `author` property in `package.json`.
+   * @computed
+   * @property {string} author - The name of the author.
    */
-  author: {
-    name: '11ty WebC Starter',
-    handle: 'blog',
-  },
-
-  /**
-   * Support for switching between dark and light mode in CSS.
-   *
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/color-scheme
-   * @property {object} colorScheme - an object that defines the site's prefered color scheme
-   * @property {string} colorScheme.content - the value of the content attribute
-   * @property {string} [colorScheme.media] - the value of the media attribute
-   */
-  colorScheme: {
-    content: 'light',
-    // media: "(prefers-color-scheme: dark)",
-  },
+  author: pkg.author.name,
 
   /**
    * A quick and easy way to add addtional `<link>` tags to the site's `<head>`.
    *
+   * Sourced from `package.json`.
    * @optional
+   * @computed
    * @property {object[]} headLinks - an array of objects, each representing a `<link>` tag.
    * @property {string} headLinks[].rel - the relationship of the link
    * @property {string} headLinks[].href - the URL of the link
@@ -202,15 +212,15 @@ export default {
   headLinks: [
     {
       rel: 'code-repository',
-      href: 'https://github.com/davidwkeith/11ty-webc-starter.git',
+      href: pkg.repository.url.replace('git+', ''),
     },
     {
       rel: 'issues',
-      href: 'https://github.com/davidwkeith/11ty-webc-starter/-/issues',
+      href: pkg.bugs.url,
     },
     {
       rel: 'code-license',
-      href: 'https://opensource.org/license/isc-license-txt',
+      href: pkg.licenseUrl,
     },
   ],
 
@@ -218,6 +228,7 @@ export default {
    * The theme color for the site, used in the `<meta name="theme-color">` tag.
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color
+   * @computed
    * @property {string} themeColor - The theme color for the site.
    */
   get themeColor() {
@@ -265,4 +276,23 @@ export default {
       .toString()
       .trim();
   },
+
+  /**
+   * The security contact for the site, used in `security.txt`.
+   *
+   * @see https://www.rfc-editor.org/rfc/rfc9116#section-2.5.3
+   * @computed
+   * @property {string} securityContact - The security contact for the site.
+   */
+  securityContact: `mailto:${pkg.bugs.email}?subject=${encodeURIComponent(
+    `Security Bug Report: ${pkg.name}`
+  )}`,
+
+  /**
+   * The funding URL for the site.
+   *
+   * @computed
+   * @property {string} funding - The funding URL for the site.
+   */
+  funding: pkg.funding,
 };

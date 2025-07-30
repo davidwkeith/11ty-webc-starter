@@ -1,3 +1,8 @@
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const pkg = require('../../package.json');
+
 /**
  * Defines the base schema.org data for all pages.
  *
@@ -13,7 +18,7 @@ export default {
   '@type': 'WebPage',
   author: {
     '@type': 'Person',
-    name: 'David W. Keith',
-    url: 'https://davidwkeith.com/',
+    name: pkg.author.name,
+    url: pkg.author.url,
   },
 };

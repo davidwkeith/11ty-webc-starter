@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="./main.css">
   <link type="text/plain" rel="author" :href="new URL('/humans.txt', $data.site.url)" />
   <link webc:if="$data.schema.author.url" rel="me" :href="$data.schema.author.url">
+  <link webc:if="$data.site.funding" rel="donation" :href="$data.site.funding">
   <link webc:if="$data.site.hasActivityPub && $data.page.inputPath.startsWith('./src/posts')" rel="alternate" type="application/activity+json" :href="`/posts/${$data.page.fileSlug}.json`">
   <template webc:if="$data.site.hasWebmentions">
     <link rel="webmention" :href="`https://webmention.io/${new URL($data.site.url).hostname}/webmention`">

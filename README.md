@@ -33,9 +33,10 @@ A live demo of this starter is available at [11ty-webc-starter.dwk.io](https://1
 
 - **Schema.org Integration:** Easy setup for structured data using JSON-LD.
 - **Theme Color:** A `theme-color` meta tag is automatically generated from the `appleIconBgColor` in `src/_data/site.js`.
-- **Author Link:** A `rel="me"` link is automatically generated from the author's URL in `src/_data/schema.js`.
+- **Author Link:** A `rel="me"` link is automatically generated from the author's URL in `package.json`.
 - **Webmention.io Integration:** Includes support for receiving and displaying webmentions, with a feature flag to easily enable or disable.
 - **ActivityPub Integration:** Generates an ActivityPub actor and representations for each post, making the site discoverable and interactive on the Fediverse.
+- **Open Graph Support:** Configured to generate Open Graph meta tags for enhanced social sharing. This feature can be enabled/disabled via the `hasOpenGraph` flag in `src/_data/site.js`.
 - **Twitter Card Support:** Configured to generate Twitter Card meta tags (`twitter:card`, `twitter:site`, `twitter:creator`, `twitter:title`, `twitter:description`, `twitter:image`) for enhanced social sharing on Twitter. This feature can be enabled/disabled via the `hasTwitter` flag in `src/_data/site.js`. Consider using Fediverse or Bluesky alternatives for social sharing.
 
 ### Progressive Web App (PWA)
@@ -122,7 +123,8 @@ To start a fresh project using this starter, follow these steps:
     ```
 
 6.  **Customize your site:**
-    - Edit `src/_data/site.js` to update your site's title, description, URL, and other global settings.
+    - Edit `package.json` to update your site's title, description, URL, and other global settings.
+    - Edit `src/_data/site.js` to update your site's feature flags and other advanced settings.
     - Start adding your content in `src/index.md`, `src/posts/`, or create new pages.
 
 ## Available Commands
@@ -131,7 +133,6 @@ This starter uses `npm` scripts to automate common tasks:
 
 - **`npm run serve`**: Starts the Eleventy development server with hot-reloading.
 - **`npm run build`**: Builds the Eleventy site.
-- **`npm run serve`**: Starts the Eleventy development server with hot-reloading.
 
 ### Testing PWA Features with Lighthouse
 
@@ -175,9 +176,9 @@ Lighthouse will provide a detailed report on your PWA's performance, accessibili
 
 ## Customization
 
-### Site Configuration (`src/_data/site.js`)
+### Site Configuration (`package.json` and `src/_data/site.js`)
 
-This file contains global site-wide variables such as the site title, description, URL, and more. It's the primary place to configure your site's metadata and global settings. The JSDoc comments within the file provide detailed explanations for each property.
+Key site-wide variables such as the site title, description, and URL are sourced directly from `package.json`. This approach centralizes your project's metadata, making it easier to manage and update. For more advanced configurations and settings not found in `package.json`, refer to `src/_data/site.js`. The JSDoc comments within `src/_data/site.js` provide detailed explanations for each property.
 
 ### Schema Data (`src/_data/schema.js`)
 

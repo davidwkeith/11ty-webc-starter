@@ -32,7 +32,7 @@ export default class {
       return null;
     }
 
-    const resource = `acct:${site.author.handle}@${new URL(site.url).hostname}`;
+    const resource = `acct:${site.fediverseCreator}`;
 
     const webfinger = {
       subject: resource,

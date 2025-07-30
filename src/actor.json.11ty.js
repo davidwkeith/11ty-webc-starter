@@ -35,8 +35,8 @@ export default class {
     const actor = {
       '@context': 'https://www.w3.org/ns/activitystreams',
       type: 'Application',
-      name: site.author.name,
-      preferredUsername: site.author.handle,
+      name: site.author,
+      preferredUsername: site.fediverseCreator.split('@')[1],
       inbox: `https://${new URL(site.url).hostname}/.well-known/webfinger`,
       outbox: `https://${new URL(site.url).hostname}/outbox.json`,
       url: `https://${new URL(site.url).hostname}/actor.json`,
